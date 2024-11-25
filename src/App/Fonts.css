@@ -1,0 +1,30 @@
+@font-face {
+	font-family: "Roboto Condensed";
+	src: url("../shared/assets/fonts/RobotoCondensed.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Saira";
+	src: url("../shared/assets/fonts/Saira.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Titillium Web";
+	src: url("../shared/assets/fonts/TitilliumWeb.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Urbanist";
+	src: url("../shared/assets/fonts/Urbanist.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Yantramanav";
+	src: url("../shared/assets/fonts/Yantramanav.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}

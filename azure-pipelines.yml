@@ -33,6 +33,8 @@ steps:
 - script: |
     echo "Starting app..."
     npm start
+    sleep 10
+    kill $(pgrep -f "npm start")
   displayName: 'Test starting app'
 
 - task: PublishBuildArtifacts@1

@@ -20,7 +20,8 @@ steps:
 
 - task: Npm@1
   inputs:
-    command: 'install'
+    command: 'custom'
+    customCommand: 'install --force'
   displayName: 'Install dependencies'
 
 - task: Npm@1

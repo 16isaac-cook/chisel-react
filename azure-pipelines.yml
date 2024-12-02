@@ -31,11 +31,9 @@ steps:
   displayName: 'Build app'
 
 - script: |
-    echo "Starting app..."
-    npm start
-    sleep 10
-    kill $(pgrep -f "npm start")
-  displayName: 'Test starting app'
+    echo "Use the npm test command"
+    npm test
+  displayName: 'Run test'
 
 - task: PublishBuildArtifacts@1
   inputs:

@@ -21,7 +21,7 @@ This is being made as a passion project with no current plans to monetize the co
 
 ## How To Use
 
-The project runs on the `electron` package with some extra packages added on for convenience. After cloning the repo you'll need to run `npm install` to get the required packages, then run `npm start` to launch the program using electron.
+After cloning the repo you'll need to run `npm install` to get the required packages, then run `npm start` to launch the program using electron.
 
 ## Credits
 

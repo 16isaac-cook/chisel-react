@@ -2,11 +2,27 @@ import styled from "styled-components";
 
 import { modify } from "../../util/styles";
 
-export const StyledSwitch = styled.label`
+interface Props {
+	$margin?: boolean;
+	fontSize?: number;
+}
+
+export const StyledSwitch = styled.label<Props>`
 	position: relative;
 	display: inline-block;
 	width: 2em;
 	height: 1em;
+	margin: ${(props) => props.$margin ? `3px` : `0`};
+`;
+
+export const SwitchContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
+
+export const SwitchLabel = styled.div<Props>`
+	font-size: ${(props) => props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
+	margin-right: 0.3em;
 `;
 
 export const SwitchInput = styled.input`

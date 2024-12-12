@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, CSSProperties } from "react";
 
 import { StyledPanel, StyledPanelTitle } from "./Panel.styles";
 
@@ -11,6 +11,7 @@ interface Props {
 	right?: boolean;
 	bottom?: boolean;
 	left?: boolean;
+    style?: CSSProperties;
 	[key: string]: any;
 }
 
@@ -23,6 +24,7 @@ const Panel: React.FC<Props> = ({
 	right = false,
 	bottom = false,
 	left = false,
+    style = undefined,
 	...panelProps
 }) => {
 	return (
@@ -34,6 +36,7 @@ const Panel: React.FC<Props> = ({
 			$right={right}
 			$bottom={bottom}
 			$left={left}
+            style={style}
 		>
 			{title ? <StyledPanelTitle>{title}</StyledPanelTitle> : null}
 			{children}

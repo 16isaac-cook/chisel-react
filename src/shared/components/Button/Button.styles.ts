@@ -1,34 +1,38 @@
 import styled, { css } from "styled-components";
 
-import { modify } from "../../util/styles";
+import { font, modify } from "../../util/styles";
 
 export type ButtonVariants = keyof typeof variants | null;
 
 interface ButtonProps {
-	$fontSize?: number;
-	$color?: string;
+	fontSize?: number;
+	color?: string;
 	$variant?: ButtonVariants;
+	$margin?: boolean;
+	$active?: boolean;
 }
 
 export const StyledButton = styled.button<ButtonProps>`
-	flex: 1;
-	flex-direction: "row";
-	justify-content: "space-between";
-	align-items: "center";
+	display: flex;
+	flex: 0 1 0;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 	border: 0;
 	background-color: ${(props) => props.theme.mixed300};
 	padding: 0.3em;
+	margin: ${(props) => props.$margin ? `3px` : `0`};
 	${modify.clickable};
 	border-radius: 5px;
 	font-size: ${(props) =>
-		props.$fontSize === 0 ? `inherit;` : `${props.$fontSize}px;`};
-	color: ${(props) => props.$color};
+		props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
+	color: ${(props) => props.color};
 	&:not(:disabled) {
 		&:hover {
 			background-color: ${(props) => props.theme.mixed400};
 		}
 		&:active {
-			background-color: ${(props) => props.theme.mixed200};
+			background-color: ${(props) => props.theme.mixed300};
 		}
 	}
 	${(props) => props.$variant && variants[props.$variant]}
@@ -36,7 +40,9 @@ export const StyledButton = styled.button<ButtonProps>`
 		opacity: 0.6;
 		cursor: default;
 	}
+	${(props) => props.$active ? `background-color: ${props.theme.primary300}` : null}
 `;
+
 const variants = {
 	primary: css`
 		background-color: ${(props) => props.theme.primary300};
@@ -45,7 +51,7 @@ const variants = {
 				background-color: ${(props) => props.theme.primary400};
 			}
 			&:active {
-				background-color: ${(props) => props.theme.primary200};
+				background-color: ${(props) => props.theme.primary300};
 			}
 		}
 	`,
@@ -58,17 +64,42 @@ const variants = {
 		font-weight: bold;
 		&:not(:disabled) {
 			&:hover {
-				color: ${(props) => props.theme.primary200};
-				background-color: transparent;
-				border-radius: 5px;
-				border-color: ${(props) => props.theme.primary200};
-			}
-			&:active {
 				color: ${(props) => props.theme.primary400};
 				background-color: transparent;
 				border-radius: 5px;
 				border-color: ${(props) => props.theme.primary400};
 			}
+			&:active {
+				color: ${(props) => props.theme.primary300};
+				background-color: transparent;
+				border-radius: 5px;
+				border-color: ${(props) => props.theme.primary300};
+			}
 		}
 	`,
+	big: css`
+		justify-content: left;
+		${font.size("big")};
+		background-color: ${(props) => props.theme.mixed300};
+		&:not(:disabled) {
+			&:hover {
+				background-color: ${(props) => props.theme.mixed400};
+			}
+			&:active {
+				background-color: ${(props) => props.theme.primary300};
+			}
+		}
+	`,
+    bigIcon: css`
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        ${font.size("huge")};
+    `,
+    giantIcon: css`
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    ${font.size("giant")};
+`
 };

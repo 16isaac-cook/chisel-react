@@ -16,7 +16,7 @@ interface FontContextProviderProps {
 export const FontContextProvider: React.FC<FontContextProviderProps> = ({
 	children,
 }) => {
-	const [font, setFont] = useState<FontName>("yantramanav");
+	const [font, setFont] = useState<FontName>("titillium");
 	return (
 		<FontContext.Provider value={{ font, setFont }}>
 			{children}

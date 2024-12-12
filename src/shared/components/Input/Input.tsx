@@ -7,6 +7,7 @@ type Props = {
 	fontSize?: number;
 	disabled?: boolean;
 	filter?: RegExp;
+	margin?: boolean;
 	onChange?: () => {};
 	[key: string]: any;
 };
@@ -18,6 +19,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
 			fontSize = 0,
 			disabled = false,
 			filter = ``,
+			margin = true,
 			onChange = () => {},
 			...inputProps
 		},
@@ -36,6 +38,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
 				fontSize={fontSize}
 				disabled={disabled}
 				onChange={handleChange}
+				$margin={margin}
 				ref={ref}
 			/>
 		);

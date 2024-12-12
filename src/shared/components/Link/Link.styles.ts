@@ -7,7 +7,8 @@ interface Props {
 }
 
 export const StyledLink = styled.button<Props>`
-	flex: 1;
+	display: flex;
+	flex: 0 1 0;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;

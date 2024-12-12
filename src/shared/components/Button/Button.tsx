@@ -12,6 +12,8 @@ type Props = {
 	iconSize?: number;
 	variant?: ButtonVariants;
 	disabled?: boolean;
+	margin?: boolean;
+	active?: boolean;
 	onClick?: () => void;
 	[key: string]: any;
 };
@@ -26,6 +28,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			iconSize = 0,
 			variant = "primary",
 			disabled = false,
+			margin = true,
+			active = false,
 			onClick = () => {},
 			...buttonProps
 		}: Props,
@@ -41,9 +45,11 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			<StyledButton
 				{...buttonProps}
 				onClick={handleClick}
-				$fontSize={fontSize}
-				$color={color}
+				fontSize={fontSize}
+				color={color}
 				$variant={variant}
+				$margin={margin}
+				$active={active}
 				disabled={disabled}
 				ref={ref}
 			>
@@ -52,7 +58,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 						icon={icon}
 						size={iconSize}
 						color={color}
-						right={true}
+						right={variant === "bigIcon" || variant === "giantIcon" ? false : true}
 					/>
 				) : (
 					icon

@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import styled from "styled-components";
 
 import { font } from "src/shared/util/styles";
@@ -9,10 +10,12 @@ interface PanelProps {
 	$right?: boolean;
 	$bottom?: boolean;
 	$left?: boolean;
+    style?: CSSProperties;
 }
 
 export const StyledPanel = styled.div<PanelProps>`
-	flex: 1;
+	display: flex;
+	flex: 1 1 auto;
 	flex-direction: ${(props) => (props.$row ? `row` : `column`)};
 	justify-content: ${(props) =>
 		props.$row ? `space-between` : `flex-start`};
@@ -30,7 +33,7 @@ export const StyledPanel = styled.div<PanelProps>`
 
 export const StyledPanelTitle = styled.div`
 	text-align: center;
-	font-size: ${font.size("small")};
+	${font.size("small")};
 	color: ${(props) => props.theme.mixed600};
 	margin-bottom: 0.3em;
 `;

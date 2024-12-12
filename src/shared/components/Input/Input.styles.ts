@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface Props {
 	fontSize?: number;
+	$margin?: boolean;
 }
 
 export const StyledInput = styled.input<Props>`
@@ -9,6 +10,7 @@ export const StyledInput = styled.input<Props>`
 	border: none;
 	border-radius: 5px;
 	padding: 0.3em;
+	margin: ${(props) => props.$margin ? `3px` : `0`};
 	font-size: ${(props) =>
 		props.fontSize === 0 ? `inherit;` : `${props.fontSize}px;`};
 	&:not(:disabled) {

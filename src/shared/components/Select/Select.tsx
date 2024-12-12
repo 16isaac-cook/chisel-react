@@ -16,12 +16,16 @@ interface OptionProps {
 type Props = {
 	options: OptionProps[];
 	placeholder?: string;
+	margin?: boolean;
+	fontSize?: number;
 	onChange?: (value: string | number) => void;
 };
 
 const Select: React.FC<Props> = ({
 	options,
 	placeholder = "Select an option.",
+	margin = true,
+	fontSize = 0,
 	onChange = () => {},
 }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +60,7 @@ const Select: React.FC<Props> = ({
 	}, [selectRef]);
 
 	return (
-		<SelectContainer ref={selectRef}>
+		<SelectContainer ref={selectRef} $margin={margin} fontSize={fontSize}>
 			<SelectedValue onClick={toggleDropdown}>
 				{selectedValue
 					? options.find((option) => option.value === selectedValue)

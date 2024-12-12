@@ -2,8 +2,15 @@ import styled from "styled-components";
 
 import { modify } from "src/shared/util/styles";
 
-export const SelectContainer = styled.div`
+interface Props {
+	fontSize?: number;
+	$margin?: boolean;
+}
+
+export const SelectContainer = styled.div<Props>`
 	position: relative;
+	margin: ${(props) => props.$margin ? `3px` : `0`};
+	font-size: ${(props) => props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
 `;
 
 export const SelectedValue = styled.div`
@@ -22,7 +29,7 @@ export const SelectedValue = styled.div`
 			background-color: ${(props) => props.theme.mixed400};
 		}
 		&:active {
-			background-color: ${(props) => props.theme.mixed200};
+			background-color: ${(props) => props.theme.mixed300};
 		}
 	}
 	&:disabled {
@@ -34,6 +41,7 @@ export const SelectedValue = styled.div`
 export const DropdownArrow = styled.div<{ $isOpen: boolean }>`
 	width: 0;
 	height: 0;
+	margin-left: 0.3em;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-top: 5px solid ${(props) => props.theme.mixed600};
@@ -47,6 +55,7 @@ export const Dropdown = styled.ul<{ $isOpen: boolean }>`
 	max-height: 100px;
 	overflow-y: auto;
 	margin: 0;
+	margin-top: 3px;
 	padding: 0;
 	list-style: none;
 	border: 0;
@@ -63,6 +72,6 @@ export const Option = styled.li`
 		background-color: ${(props) => props.theme.mixed400};
 	}
 	&:active {
-		background-color: ${(props) => props.theme.mixed200};
+		background-color: ${(props) => props.theme.mixed300};
 	}
 `;

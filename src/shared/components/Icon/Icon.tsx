@@ -12,6 +12,8 @@ const iconCodes = {
 	folder: "ri-folder-3-fill",
 	settings: "ri-settings-5-fill",
 	question: "ri-question-fill",
+    quill: "ri-quill-pen-fill",
+    left: "ri-arrow-left-line"
 } as const;
 
 type IconName = keyof typeof iconCodes | string;
@@ -26,8 +28,8 @@ const Icon: React.FC<IconProps> = ({ icon = "home", right, ...iconProps }) => {
 	return (
 		<StyledIcon
 			{...iconProps}
-			icon={iconCodes[icon as keyof typeof iconCodes]}
-			right={right}
+			className={iconCodes[icon as keyof typeof iconCodes]}
+			$right={right}
 		/>
 	);
 };

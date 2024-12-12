@@ -1,6 +1,6 @@
-import { forwardRef, ReactNode } from "react";
+import { forwardRef, ReactNode, CSSProperties } from "react";
 
-import Icon from "../Icon/Icon";
+import Icon, { IconName } from "../Icon/Icon";
 
 import { StyledButton, ButtonVariants } from "./Button.styles";
 
@@ -8,13 +8,14 @@ type Props = {
 	children?: ReactNode;
 	fontSize?: number;
 	color?: string;
-	icon?: string;
+	icon?: IconName;
 	iconSize?: number;
 	variant?: ButtonVariants;
 	disabled?: boolean;
 	margin?: boolean;
 	active?: boolean;
 	onClick?: () => void;
+	style?: CSSProperties;
 	[key: string]: any;
 };
 
@@ -31,6 +32,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			margin = true,
 			active = false,
 			onClick = () => {},
+			style = undefined,
 			...buttonProps
 		}: Props,
 		ref
@@ -51,6 +53,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 				$margin={margin}
 				$active={active}
 				disabled={disabled}
+				style={style}
 				ref={ref}
 			>
 				{icon && typeof icon === "string" ? (
@@ -58,7 +61,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 						icon={icon}
 						size={iconSize}
 						color={color}
-						right={variant === "bigIcon" || variant === "giantIcon" ? false : true}
+						right={variant === "vertical" ? false : true}
 					/>
 				) : (
 					icon

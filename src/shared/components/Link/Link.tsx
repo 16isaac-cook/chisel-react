@@ -1,13 +1,13 @@
 import { forwardRef, ReactNode } from "react";
 
-import Icon from "../Icon/Icon";
+import Icon, { IconName } from "../Icon/Icon";
 
 import { StyledLink } from "./Link.styles";
 
 type Props = {
 	children?: ReactNode;
 	fontSize?: number;
-	icon?: string;
+	icon?: IconName;
 	iconSize?: number;
 	disabled?: boolean;
 	onClick?: () => void;

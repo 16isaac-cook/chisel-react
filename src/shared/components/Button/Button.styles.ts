@@ -21,7 +21,7 @@ export const StyledButton = styled.button<ButtonProps>`
 	border: 0;
 	background-color: ${(props) => props.theme.mixed300};
 	padding: 0.3em;
-	margin: ${(props) => props.$margin ? `3px` : `0`};
+	margin: ${(props) => (props.$margin ? `3px` : `0`)};
 	${modify.clickable};
 	border-radius: 5px;
 	font-size: ${(props) =>
@@ -40,7 +40,8 @@ export const StyledButton = styled.button<ButtonProps>`
 		opacity: 0.6;
 		cursor: default;
 	}
-	${(props) => props.$active ? `background-color: ${props.theme.primary300}` : null}
+	${(props) =>
+		props.$active ? `background-color: ${props.theme.primary300}` : null}
 `;
 
 const variants = {
@@ -90,16 +91,9 @@ const variants = {
 			}
 		}
 	`,
-    bigIcon: css`
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        ${font.size("huge")};
-    `,
-    giantIcon: css`
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    ${font.size("giant")};
-`
+	vertical: css`
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+	`,
 };

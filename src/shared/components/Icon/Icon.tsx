@@ -12,11 +12,14 @@ const iconCodes = {
 	folder: "ri-folder-3-fill",
 	settings: "ri-settings-5-fill",
 	question: "ri-question-fill",
-    quill: "ri-quill-pen-fill",
-    left: "ri-arrow-left-line"
+	quill: "ri-quill-pen-fill",
+	left: "ri-arrow-left-line",
+	info: "ri-information-fill",
+	hammer: "ri-hammer-fill",
+	scroll: "ri-file-paper-2-fill",
 } as const;
 
-type IconName = keyof typeof iconCodes | string;
+export type IconName = keyof typeof iconCodes;
 
 interface IconProps {
 	icon?: IconName;

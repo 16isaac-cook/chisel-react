@@ -1,27 +1,30 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import { NavLink } from "react-router";
 
 import {
 	StyledTitleBar,
 	TitleBarBackButton,
 	TitleBarTitle,
 } from "./TitleBar.style";
-import Link from "../Link/Link";
 import Icon from "../Icon/Icon";
 
 interface Props {
 	title: string;
-    home?: boolean;
+	home?: boolean;
+	back?: string;
 }
 
-const TitleBar: React.FC<Props> = ({ title, home }) => {
+const TitleBar: React.FC<Props> = ({ title, home, back }) => {
 	return (
 		<StyledTitleBar>
-            {!home ? <TitleBarBackButton>
-				<Link>
-					<Icon icon="left" />
-					<Icon icon="home" />
-				</Link>
-			</TitleBarBackButton> : null }
+			{back ? (
+				<TitleBarBackButton>
+					<NavLink to={back}>
+						<Icon icon="left" />
+						{home ? <Icon icon="home" /> : null}
+					</NavLink>
+				</TitleBarBackButton>
+			) : null}
 			<TitleBarTitle>{title}</TitleBarTitle>
 		</StyledTitleBar>
 	);

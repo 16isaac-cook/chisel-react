@@ -3,7 +3,12 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 
 import Home from "src/screens/Home/Home";
 import GMTools from "src/screens/GMTools/GMTools";
-import Quill from "src/screens/Quill/Quill";
+import Quill, {
+	QuillHome,
+	QuillWorlds,
+	QuillSettings,
+	QuillHelp,
+} from "src/screens/Quill/Quill";
 import Hammer from "src/screens/Hammer/Hammer";
 import PlayerTools from "src/screens/PlayerTools/PlayerTools";
 import Scroll from "src/screens/Scroll/Scroll";
@@ -22,6 +27,24 @@ const router = createBrowserRouter([
 	{
 		path: "/quill",
 		element: <Quill />,
+		children: [
+			{
+				index: true,
+				element: <QuillHome />,
+			},
+			{
+				path: "worlds",
+				element: <QuillWorlds />,
+			},
+			{
+				path: "settings",
+				element: <QuillSettings />,
+			},
+			{
+				path: "help",
+				element: <QuillHelp />,
+			},
+		],
 	},
 	{
 		path: "/hammer",

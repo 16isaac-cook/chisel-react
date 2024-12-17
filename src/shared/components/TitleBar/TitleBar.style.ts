@@ -12,7 +12,6 @@ export const StyledTitleBar = styled.div<Props>`
 	background-color: transparent;
 	border-radius: 5px;
 	flex: 1 0 auto;
-	height: auto;
 `;
 
 export const TitleBarBackButton = styled.div`

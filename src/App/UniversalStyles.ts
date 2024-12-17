@@ -25,8 +25,7 @@ export default createGlobalStyle<{ font: FontName }>`
 
     #root {
         display: flex;
-        width: 100%;
-        height: auto;
+        height: 100%;
     }
 
     a {

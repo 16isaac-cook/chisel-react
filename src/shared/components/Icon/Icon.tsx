@@ -11,7 +11,7 @@ const iconCodes = {
 	pen: "ri-pen-nib-fill",
 	folder: "ri-folder-3-fill",
 	settings: "ri-settings-5-fill",
-	question: "ri-question-fill",
+	help: "ri-question-fill",
 	quill: "ri-quill-pen-fill",
 	left: "ri-arrow-left-line",
 	info: "ri-information-fill",

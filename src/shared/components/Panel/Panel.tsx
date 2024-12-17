@@ -5,38 +5,35 @@ import { StyledPanel, StyledPanelTitle } from "./Panel.styles";
 interface Props {
 	children?: ReactNode;
 	title?: string;
-	row?: boolean;
-	all?: boolean;
+	column?: boolean;
 	top?: boolean;
 	right?: boolean;
 	bottom?: boolean;
 	left?: boolean;
-    style?: CSSProperties;
+	style?: CSSProperties;
 	[key: string]: any;
 }
 
 const Panel: React.FC<Props> = ({
 	children,
 	title = undefined,
-	row = false,
-	all = true,
+	column = true,
 	top = false,
 	right = false,
 	bottom = false,
 	left = false,
-    style = undefined,
+	style = undefined,
 	...panelProps
 }) => {
 	return (
 		<StyledPanel
 			{...panelProps}
-			$row={row}
-			$all={all}
+			$column={column}
 			$top={top}
 			$right={right}
 			$bottom={bottom}
 			$left={left}
-            style={style}
+			style={style}
 		>
 			{title ? <StyledPanelTitle>{title}</StyledPanelTitle> : null}
 			{children}

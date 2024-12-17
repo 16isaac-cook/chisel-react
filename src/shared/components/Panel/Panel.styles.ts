@@ -1,34 +1,33 @@
-import { CSSProperties } from 'react';
+import { CSSProperties } from "react";
 import styled from "styled-components";
 
 import { font } from "src/shared/util/styles";
 
 interface PanelProps {
-	$row?: boolean;
-	$all?: boolean;
+	$column?: boolean;
 	$top?: boolean;
 	$right?: boolean;
 	$bottom?: boolean;
 	$left?: boolean;
-    style?: CSSProperties;
+	style?: CSSProperties;
 }
 
 export const StyledPanel = styled.div<PanelProps>`
 	display: flex;
 	flex: 1 1 auto;
-	flex-direction: ${(props) => (props.$row ? `row` : `column`)};
+	flex-direction: ${(props) => (props.$column ? `column` : `row`)};
 	justify-content: ${(props) =>
-		props.$row ? `space-between` : `flex-start`};
+		props.$column ? `flex-start` : `space-between`};
 	align-items: center;
 	background-color: ${(props) => props.theme.mixed200};
 	padding: 0.3em;
 	border: 0;
 	border-radius: 0.3em;
-	margin: ${(props) => (props.$all ? `0.3em` : null)};
 	margin-top: ${(props) => (props.$top ? `0.3em` : null)};
 	margin-right: ${(props) => (props.$right ? `0.3em` : null)};
 	margin-bottom: ${(props) => (props.$bottom ? `0.3em` : null)};
 	margin-left: ${(props) => (props.$left ? `0.3em` : null)};
+	width: ${(props) => (props.$column ? `100%` : null)};
 `;
 
 export const StyledPanelTitle = styled.div`

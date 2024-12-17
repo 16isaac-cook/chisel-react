@@ -12,7 +12,10 @@ type Props = {
 	iconSize?: number;
 	variant?: ButtonVariants;
 	disabled?: boolean;
-	margin?: boolean;
+	top?: boolean;
+	right?: boolean;
+	bottom?: boolean;
+	left?: boolean;
 	active?: boolean;
 	onClick?: () => void;
 	style?: CSSProperties;
@@ -29,7 +32,10 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			iconSize = 0,
 			variant = "primary",
 			disabled = false,
-			margin = true,
+			top = false,
+			right = false,
+			bottom = false,
+			left = false,
 			active = false,
 			onClick = () => {},
 			style = undefined,
@@ -50,7 +56,10 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 				fontSize={fontSize}
 				color={color}
 				$variant={variant}
-				$margin={margin}
+				$top={top}
+				$right={right}
+				$bottom={bottom}
+				$left={left}
 				$active={active}
 				disabled={disabled}
 				style={style}

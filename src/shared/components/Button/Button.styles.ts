@@ -8,7 +8,10 @@ interface ButtonProps {
 	fontSize?: number;
 	color?: string;
 	$variant?: ButtonVariants;
-	$margin?: boolean;
+	$top?: boolean;
+	$right?: boolean;
+	$bottom?: boolean;
+	$left?: boolean;
 	$active?: boolean;
 }
 
@@ -19,20 +22,33 @@ export const StyledButton = styled.button<ButtonProps>`
 	justify-content: center;
 	align-items: center;
 	border: 0;
-	background-color: ${(props) => props.theme.mixed300};
 	padding: 0.3em;
-	margin: ${(props) => (props.$margin ? `3px` : `0`)};
+	margin-top: ${(props) => (props.$top ? `0.3em` : null)};
+	margin-right: ${(props) => (props.$right ? `0.3em` : null)};
+	margin-bottom: ${(props) => (props.$bottom ? `0.3em` : null)};
+	margin-left: ${(props) => (props.$left ? `0.3em` : null)};
 	${modify.clickable};
 	border-radius: 5px;
+	text-align: center;
 	font-size: ${(props) =>
 		props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
 	color: ${(props) => props.color};
+	${(props) =>
+		props.$active
+			? `background-color: ${props.theme.primary300}`
+			: `background-color: ${props.theme.mixed300}`};
 	&:not(:disabled) {
 		&:hover {
-			background-color: ${(props) => props.theme.mixed400};
+			${(props) =>
+				props.$active
+					? `background-color: ${props.theme.primary400}`
+					: `background-color: ${props.theme.mixed400}`}
 		}
 		&:active {
-			background-color: ${(props) => props.theme.mixed300};
+			${(props) =>
+				props.$active
+					? `background-color: ${props.theme.primary300}`
+					: `background-color: ${props.theme.mixed300}`}
 		}
 	}
 	${(props) => props.$variant && variants[props.$variant]}
@@ -40,8 +56,6 @@ export const StyledButton = styled.button<ButtonProps>`
 		opacity: 0.6;
 		cursor: default;
 	}
-	${(props) =>
-		props.$active ? `background-color: ${props.theme.primary300}` : null}
 `;
 
 const variants = {
@@ -80,16 +94,7 @@ const variants = {
 	`,
 	big: css`
 		justify-content: left;
-		${font.size("big")};
-		background-color: ${(props) => props.theme.mixed300};
-		&:not(:disabled) {
-			&:hover {
-				background-color: ${(props) => props.theme.mixed400};
-			}
-			&:active {
-				background-color: ${(props) => props.theme.primary300};
-			}
-		}
+		${font.size("huge")};
 	`,
 	vertical: css`
 		flex-direction: column;

@@ -27,7 +27,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 		{
 			children = undefined,
 			fontSize = 0,
-			color = "#fff",
+			color,
 			icon = undefined,
 			iconSize = 0,
 			variant = "primary",

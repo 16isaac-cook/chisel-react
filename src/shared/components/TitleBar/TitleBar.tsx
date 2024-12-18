@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router";
+
+import { useThemeContext } from "src/shared/context/theme-context";
 
 import {
 	StyledTitleBar,
 	TitleBarBackButton,
+	TitleBarSettingsButton,
 	TitleBarTitle,
 } from "./TitleBar.style";
 import Icon from "../Icon/Icon";
+import Link from "../Link/Link";
+import Button from "../Button/Button";
+import SettingsPanel from "../SettingsPanel/SettingsPanel";
 
 interface Props {
 	title: string;
@@ -14,7 +20,13 @@ interface Props {
 	back?: string;
 }
 
+interface SettingsProps {
+	panelVisible: boolean;
+}
+
 const TitleBar: React.FC<Props> = ({ title, home, back }) => {
+	const [panelOpen, setPanelOpen] = useState(false);
+
 	return (
 		<StyledTitleBar>
 			{back ? (
@@ -26,6 +38,15 @@ const TitleBar: React.FC<Props> = ({ title, home, back }) => {
 				</TitleBarBackButton>
 			) : null}
 			<TitleBarTitle>{title}</TitleBarTitle>
+			<TitleBarSettingsButton>
+				<Link onClick={() => setPanelOpen(true)}>
+					<Icon icon="settings" />
+				</Link>
+			</TitleBarSettingsButton>
+			<SettingsPanel
+				panelVisible={panelOpen}
+				onClick={() => setPanelOpen(false)}
+			/>
 		</StyledTitleBar>
 	);
 };

@@ -8,6 +8,19 @@ import {
 	DropdownArrow,
 } from "./Select.styles";
 
+/*
+Farmat like this:
+[
+    {
+        value: 0,
+        label: "option 1"
+    },
+    {
+        value: 1,
+        label: "option 2"
+    }
+]
+*/
 interface OptionProps {
 	value: string | number;
 	label: string;

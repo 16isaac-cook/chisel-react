@@ -19,7 +19,7 @@ export const StyledPanel = styled.div<PanelProps>`
 	justify-content: ${(props) =>
 		props.$column ? `flex-start` : `space-between`};
 	align-items: center;
-	background-color: ${(props) => props.theme.mixed200};
+	background-color: ${(props) => props.theme.dark200};
 	padding: 0.3em;
 	border: 0;
 	border-radius: 0.3em;
@@ -33,6 +33,6 @@ export const StyledPanel = styled.div<PanelProps>`
 export const StyledPanelTitle = styled.div`
 	text-align: center;
 	${font.size("small")};
-	color: ${(props) => props.theme.mixed600};
+	color: ${(props) => props.theme.dark600};
 	margin-bottom: 0.3em;
 `;

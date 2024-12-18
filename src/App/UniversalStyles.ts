@@ -6,14 +6,14 @@ import { FontName } from "../shared/util/styles";
 export default createGlobalStyle<{ font: FontName }>`
     * {
         box-sizing: border-box;
-        color: #fff;
+        color: ${(props) => props.theme.font};
         margin: 0;
         padding: 0;
         font-size: inherit;
     }
 
     body {
-        background-color: ${(props) => props.theme.mixed100};
+        background-color: ${(props) => props.theme.dark100};
         ${font.size("normal")};
         ${(props) => (props.font ? font.family(props.font) : null)}
         position: absolute;
@@ -49,13 +49,13 @@ export default createGlobalStyle<{ font: FontName }>`
         border-radius: 2.5px;
     }
     ::-webkit-scrollbar-thumb {
-        background: ${(props) => props.theme.mixed400};
+        background: ${(props) => props.theme.dark400};
         border-radius: 2.5px;
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: ${(props) => props.theme.mixed500};
+        background: ${(props) => props.theme.dark500};
     } 
     ::-webkit-scrollbar-thumb:active {
-        background: ${(props) => props.theme.mixed400};
+        background: ${(props) => props.theme.dark400};
     }
 `;

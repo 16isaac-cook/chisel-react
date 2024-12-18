@@ -16,7 +16,7 @@ interface Props {
 const Label: React.FC<Props> = ({
 	children,
 	fontSize = 0,
-	color = "#fff",
+	color,
 	icon = undefined,
 	center = false,
 	style = undefined,

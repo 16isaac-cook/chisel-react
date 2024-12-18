@@ -6,19 +6,19 @@ import UniversalStyles from "./UniversalStyles";
 import Routes from "./Routes";
 import "./Fonts.css";
 import "remixicon/fonts/remixicon.css";
-import { themes, ThemeName } from "src/shared/util/styles";
+import { themes } from "src/shared/util/styles";
+import {
+	ThemeContextProvider,
+	useThemeContext,
+} from "src/shared/context/theme-context";
 import {
 	FontContextProvider,
 	useFontContext,
 } from "src/shared/context/font-context";
 
 const App: React.FC = () => {
-	const [theme, setTheme] = useState<ThemeName>("dark");
+	const { theme } = useThemeContext();
 	const { font } = useFontContext();
-
-	const changeTheme = (theme: ThemeName) => {
-		setTheme(theme);
-	};
 
 	return (
 		<ThemeProvider theme={themes[theme]}>
@@ -31,9 +31,11 @@ const App: React.FC = () => {
 
 const AppWrapper: React.FC = () => {
 	return (
-		<FontContextProvider>
-			<App />
-		</FontContextProvider>
+		<ThemeContextProvider>
+			<FontContextProvider>
+				<App />
+			</FontContextProvider>
+		</ThemeContextProvider>
 	);
 };
 

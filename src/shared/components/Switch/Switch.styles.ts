@@ -12,16 +12,17 @@ export const StyledSwitch = styled.label<Props>`
 	display: inline-block;
 	width: 2em;
 	height: 1em;
-	margin: ${(props) => props.$margin ? `3px` : `0`};
+	margin: ${(props) => (props.$margin ? `3px` : `0`)};
 `;
 
 export const SwitchContainer = styled.div`
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 `;
 
 export const SwitchLabel = styled.div<Props>`
-	font-size: ${(props) => props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
+	font-size: ${(props) =>
+		props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
 	margin-right: 0.3em;
 `;
 
@@ -38,7 +39,7 @@ export const SwitchSlider = styled.span`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: ${(props) => props.theme.mixed600};
+	background-color: ${(props) => props.theme.dark600};
 	transition: 0.4s;
 	border-radius: 34px;
 

@@ -32,23 +32,23 @@ export const StyledButton = styled.button<ButtonProps>`
 	text-align: center;
 	font-size: ${(props) =>
 		props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
-	color: ${(props) => props.color};
+	color: ${(props) => (props.color ? props.color : props.theme.font)};
 	${(props) =>
 		props.$active
 			? `background-color: ${props.theme.primary300}`
-			: `background-color: ${props.theme.mixed300}`};
+			: `background-color: ${props.theme.dark300}`};
 	&:not(:disabled) {
 		&:hover {
 			${(props) =>
 				props.$active
 					? `background-color: ${props.theme.primary400}`
-					: `background-color: ${props.theme.mixed400}`}
+					: `background-color: ${props.theme.dark400}`}
 		}
 		&:active {
 			${(props) =>
 				props.$active
 					? `background-color: ${props.theme.primary300}`
-					: `background-color: ${props.theme.mixed300}`}
+					: `background-color: ${props.theme.dark300}`}
 		}
 	}
 	${(props) => props.$variant && variants[props.$variant]}

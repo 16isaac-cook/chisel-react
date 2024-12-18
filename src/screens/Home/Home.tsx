@@ -41,6 +41,7 @@ const Home: React.FC = () => {
 						display: "grid",
 						gridTemplateColumns: "1fr 1fr 1fr 1fr",
 						gridTemplateRows: "auto",
+						gap: "0.3em",
 					}}
 				>
 					<Button

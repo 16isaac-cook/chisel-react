@@ -15,5 +15,5 @@ export const StyledLabel = styled.div<LabelProps>`
 	${(props) => (props.center ? `text-align: center` : null)};
 	font-size: ${(props) =>
 		props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
-	color: ${(props) => props.color};
+	color: ${(props) => (props.color ? props.color : props.theme.font)};
 `;

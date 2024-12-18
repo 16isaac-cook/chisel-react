@@ -14,12 +14,7 @@ type ColorScheme = {
 	dark400: string;
 	dark500: string;
 	dark600: string;
-	mixed100: string;
-	mixed200: string;
-	mixed300: string;
-	mixed400: string;
-	mixed500: string;
-	mixed600: string;
+	font: string;
 };
 
 type Theme = {
@@ -42,12 +37,7 @@ export const themes: Theme = {
 		dark400: "#575757",
 		dark500: "#717171",
 		dark600: "#8b8b8b",
-		mixed100: "#1c1621",
-		mixed200: "#312b36",
-		mixed300: "#47424c",
-		mixed400: "#5f5a63",
-		mixed500: "#78737b",
-		mixed600: "#918d94",
+		font: "#fff",
 	},
 	light: {
 		primary100: "#6720bd",
@@ -56,18 +46,13 @@ export const themes: Theme = {
 		primary400: "#9f6dd5",
 		primary500: "#b085dc",
 		primary600: "#c19ce3",
-		dark100: "#121212",
-		dark200: "#282828",
-		dark300: "#3f3f3f",
-		dark400: "#575757",
-		dark500: "#717171",
-		dark600: "#8b8b8b",
-		mixed100: "#1c1621",
-		mixed200: "#312b36",
-		mixed300: "#47424c",
-		mixed400: "#5f5a63",
-		mixed500: "#78737b",
-		mixed600: "#918d94",
+		dark100: "#a4a4a4",
+		dark200: "#b8b8b8",
+		dark300: "#cccccc",
+		dark400: "#e0e0e0",
+		dark500: "#f4f4f4",
+		dark600: "#ffffff",
+		font: "#000",
 	},
 };
 

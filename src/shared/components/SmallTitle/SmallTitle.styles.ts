@@ -8,7 +8,7 @@ export const StyledTitle = styled.div<Props>`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	background-color: ${(props) => props.theme.mixed200};
+	background-color: ${(props) => props.theme.dark200};
 	padding: 0.3em;
 	border: 0;
 	border-radius: 0.3em;

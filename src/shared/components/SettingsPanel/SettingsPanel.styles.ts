@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { modify } from "src/shared/util/styles";
 
 interface Props {
-	panelVisible: boolean;
+	$panelVisible: boolean;
 }
 
 export const SettingsCover = styled.div<Props>`
@@ -14,13 +14,13 @@ export const SettingsCover = styled.div<Props>`
 	left: 0;
 	background-color: ${(props) => modify.rgba(props.theme.dark100, 0.5)};
 	z-index: 999;
-	${(props) => (props.panelVisible ? null : `display: none`)};
+	${(props) => (props.$panelVisible ? null : `display: none`)};
 `;
 
 export const StyledSettingsPanel = styled.div<Props>`
 	position: fixed;
 	top: 0;
-	right: ${(props) => (props.panelVisible ? "0" : "-40%")};
+	right: ${(props) => (props.$panelVisible ? "0" : "-40%")};
 	height: 100%;
 	width: 40%;
 	background-color: ${(props) => props.theme.dark200};

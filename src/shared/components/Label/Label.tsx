@@ -26,7 +26,7 @@ const Label: React.FC<Props> = ({
 		<StyledLabel
 			fontSize={fontSize}
 			color={color}
-			center={center}
+			$center={center}
 			style={style}
 			{...labelProps}
 		>

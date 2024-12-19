@@ -1,30 +1,223 @@
 @font-face {
-	font-family: "Roboto Condensed";
-	src: url("../shared/assets/fonts/RobotoCondensed.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Afacad Flux";
+    src: url("../shared/assets/fonts/AfacadFlux/AfacadFlux-VariableFont_slnt\,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
 }
 @font-face {
-	font-family: "Saira";
-	src: url("../shared/assets/fonts/Saira.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
 }
 @font-face {
-	font-family: "Titillium Web";
-	src: url("../shared/assets/fonts/TitilliumWeb.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
 }
 @font-face {
-	font-family: "Urbanist";
-	src: url("../shared/assets/fonts/Urbanist.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
 }
 @font-face {
-	font-family: "Yantramanav";
-	src: url("../shared/assets/fonts/Yantramanav.ttf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Chakra Petch";
+    src: url("../shared/assets/fonts/ChakraPetch/ChakraPetch-SemiBoldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Josefin Sans";
+    src: url("../shared/assets/fonts/JosefinSans/JosefinSans-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Josefin Sans";
+    src: url("../shared/assets/fonts/JosefinSans/JosefinSans-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Roboto Condensed";
+    src: url("../shared/assets/fonts/RobotoCondensed/RobotoCondensed-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    src: url("../shared/assets/fonts/RobotoCondensed/RobotoCondensed-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Saira";
+    src: url("../shared/assets/fonts/Saira/Saira-VariableFont_wdth\,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Saira";
+    src: url("../shared/assets/fonts/Saira/Saira-Italic-VariableFont_wdth\,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-ExtraLightItalic.ttf") format("truetype");
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../shared/assets/fonts/TitilliumWeb/TitilliumWeb-SemiBoldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Urbanist";
+    src: url("../shared/assets/fonts/Urbanist/Urbanist-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Urbanist";
+    src: url("../shared/assets/fonts/Urbanist/Urbanist-Italic-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../shared/assets/fonts/Yantramanav/Yantramanav-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../shared/assets/fonts/Yantramanav/Yantramanav-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../shared/assets/fonts/Yantramanav/Yantramanav-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../shared/assets/fonts/Yantramanav/Yantramanav-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../shared/assets/fonts/Yantramanav/Yantramanav-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../shared/assets/fonts/Yantramanav/Yantramanav-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
 }

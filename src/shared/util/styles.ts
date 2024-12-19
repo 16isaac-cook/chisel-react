@@ -57,23 +57,40 @@ export const themes: Theme = {
 };
 
 export type FontName =
+	| "afacad"
+	| "chakra"
+	| "josefin"
 	| "roboto"
 	| "saira"
 	| "titillium"
 	| "urbanist"
 	| "yantramanav";
 
-type Font = {
+type FontDisplayNames = {
 	[key in FontName]: string;
 };
 
-export const fontFamilies: Font = {
-	roboto: "font-family: Roboto Condensed;",
-	saira: "font-family: Saira;",
-	titillium: "font-family: Titillium Web;",
-	urbanist: "font-family: Urbanist;",
-	yantramanav: "font-family: Yantramanav;",
+export const fontDisplayNames: FontDisplayNames = {
+	afacad: "Afacad Flux",
+	chakra: "Chakra Petch",
+	josefin: "Josefin Sans",
+	roboto: "Roboto Condensed",
+	saira: "Saira",
+	titillium: "Titillium Web",
+	urbanist: "Urbanist",
+	yantramanav: "Yantramanav",
 };
+
+export const isFont = (value: unknown): value is FontName => {
+	return typeof value === "string" && value !== null;
+};
+
+export const fontFamilies: { [key in FontName]: string } = Object.fromEntries(
+	(Object.keys(fontDisplayNames) as FontName[]).map((key) => [
+		key,
+		`font-family: ${fontDisplayNames[key]};`,
+	])
+) as { [key in FontName]: string };
 
 type FontSizes = {
 	tiny: string;

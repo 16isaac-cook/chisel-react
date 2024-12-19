@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
-import { FontName } from "../util/styles";
+import { FontName, fontDisplayNames } from "../util/styles";
 
 interface FontContextType {
 	font: FontName;
@@ -19,20 +19,7 @@ export const FontContextProvider: React.FC<FontContextProviderProps> = ({
 }) => {
 	const [font, setFont] = useState<FontName>("titillium");
 	const getFontName = () => {
-		switch (font) {
-			case "roboto":
-				return "Roboto Condensed";
-			case "saira":
-				return "Saira";
-			case "titillium":
-				return "Titillium Web";
-			case "urbanist":
-				return "Urbanist";
-			case "yantramanav":
-				return "Yantramanav";
-			default:
-				return "ERROR";
-		}
+		return fontDisplayNames[font];
 	};
 	return (
 		<FontContext.Provider value={{ font, setFont, getFontName }}>

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { fontDisplayNames, isFont } from "src/shared/util/styles";
+
 import { SettingsCover, StyledSettingsPanel } from "./SettingsPanel.styles";
 import { useThemeContext } from "src/shared/context/theme-context";
 import { useFontContext } from "src/shared/context/font-context";
@@ -16,8 +18,8 @@ const SettingsPanel: React.FC<PanelProps> = ({ panelVisible, onClick }) => {
 	const fontCtx = useFontContext();
 	return (
 		<div>
-			<SettingsCover panelVisible={panelVisible} onClick={onClick} />
-			<StyledSettingsPanel panelVisible={panelVisible}>
+			<SettingsCover $panelVisible={panelVisible} onClick={onClick} />
+			<StyledSettingsPanel $panelVisible={panelVisible}>
 				<Label style={{ margin: "0.3em 0" }}>Settings</Label>
 
 				<Label style={{ justifyContent: "left", marginLeft: "0.3em" }}>
@@ -40,22 +42,15 @@ const SettingsPanel: React.FC<PanelProps> = ({ panelVisible, onClick }) => {
 					Select a Font:
 				</Label>
 				<Select
-					options={[
-						{ value: "roboto", label: "Roboto Condensed" },
-						{ value: "saira", label: "Saira" },
-						{ value: "titillium", label: "Titillium Web" },
-						{ value: "urbanist", label: "Urbanist" },
-						{ value: "yantramanav", label: "Yantramanav" },
-					]}
+					options={Object.entries(fontDisplayNames).map(
+						([key, value]) => ({
+							value: key,
+							label: value,
+						})
+					)}
 					placeholder={fontCtx.getFontName()}
 					onChange={(value) =>
-						value === "roboto" ||
-						value === "saira" ||
-						value === "titillium" ||
-						value === "urbanist" ||
-						value === "yantramanav"
-							? fontCtx.setFont(value)
-							: null
+						isFont(value) ? fontCtx.setFont(value) : null
 					}
 				/>
 			</StyledSettingsPanel>

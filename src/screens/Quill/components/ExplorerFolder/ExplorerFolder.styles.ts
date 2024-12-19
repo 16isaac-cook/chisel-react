@@ -7,18 +7,24 @@ interface Props {
 	$margin?: boolean;
 }
 
-export const SelectContainer = styled.div<Props>`
+export const FolderContainer = styled.div<Props>`
 	position: relative;
-	margin: ${(props) => (props.$margin ? `3px` : `0`)};
+	margin: ${(props) => (props.$margin ? `0.3em` : `0`)};
 	font-size: ${(props) =>
 		props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 `;
 
-export const SelectedValue = styled.div`
+export const FolderLabel = styled.div<{ $isOpen: boolean }>`
 	padding: 0.3em;
 	border: 0;
 	border-radius: 5px;
-	background-color: ${(props) => props.theme.dark300};
+	background-color: ${(props) =>
+		props.$isOpen ? props.theme.primary300 : props.theme.dark300};
 	display: flex;
 	flex: 1;
 	flex-direction: row;
@@ -27,16 +33,19 @@ export const SelectedValue = styled.div`
 	${modify.clickable}
 	&:not(:disabled) {
 		&:hover {
-			background-color: ${(props) => props.theme.dark400};
+			background-color: ${(props) =>
+				props.$isOpen ? props.theme.primary400 : props.theme.dark400};
 		}
 		&:active {
-			background-color: ${(props) => props.theme.dark300};
+			background-color: ${(props) =>
+				props.$isOpen ? props.theme.primary300 : props.theme.dark300};
 		}
 	}
 	&:disabled {
 		opacity: 0.6;
 		cursor: default;
 	}
+	width: 100%;
 `;
 
 export const DropdownArrow = styled.div<{ $isOpen: boolean }>`
@@ -51,22 +60,19 @@ export const DropdownArrow = styled.div<{ $isOpen: boolean }>`
 `;
 
 export const Dropdown = styled.ul<{ $isOpen: boolean }>`
-	position: absolute;
-	width: 100%;
+	width: 90%;
 	max-height: 300px;
 	overflow-y: auto;
-	margin: 0;
-	margin-top: 3px;
+	margin-top: 0.15em;
 	padding: 0;
 	list-style: none;
 	border: 0;
 	border-radius: 5px;
-	background-color: ${(props) => props.theme.dark300};
+	background-color: transparent;
 	display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
-	z-index: 10;
 `;
 
-export const Option = styled.li`
+export const Item = styled.li`
 	padding: 0.3em;
 	${modify.clickable}
 	&:hover {

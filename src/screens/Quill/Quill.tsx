@@ -6,10 +6,13 @@ import Container from "src/shared/components/Container/Container";
 import SmallTitle from "src/shared/components/SmallTitle/SmallTitle";
 import Panel from "src/shared/components/Panel/Panel";
 import Button from "src/shared/components/Button/Button";
+import Icon from "src/shared/components/Icon/Icon";
 
 const Quill: React.FC = () => {
-	const [currentPage, setCurrentPage] = useState("home");
 	const navigate = useNavigate();
+
+	const [currentPage, setCurrentPage] = useState("home");
+	const [currentWorld, setCurrentWorld] = useState();
 
 	return (
 		<Page title="Quill" back="/gm-tools">
@@ -51,8 +54,24 @@ const Quill: React.FC = () => {
 							Worlds
 						</Button>
 					</Panel>
-					<Panel top={true} bottom={true}>
+					<Panel
+						top={true}
+						bottom={true}
+						style={{
+							flex: "1 1 0",
+						}}
+					>
 						Select a World to get started!
+						<Container
+							style={{
+								overflowY: "auto",
+								overflowX: "hidden",
+								flex: "1 1 0",
+								width: "100%",
+							}}
+							padding={false}
+							justify="flex-start"
+						></Container>
 					</Panel>
 					<Panel style={{ flex: "0 1 0", padding: "0.6em" }}>
 						<Button
@@ -113,7 +132,13 @@ export const QuillWorlds: React.FC = () => {
 	return (
 		<Container style={{ width: "100%" }} padding={false}>
 			<SmallTitle>Worlds</SmallTitle>
-			<Panel></Panel>
+			<Panel>
+				<Container></Container>
+				<Button style={{ width: "100%" }}>
+					Create New World{" "}
+					<Icon icon="add" style={{ marginLeft: "0.3em" }} />
+				</Button>
+			</Panel>
 		</Container>
 	);
 };

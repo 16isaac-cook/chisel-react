@@ -30,7 +30,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			color,
 			icon = undefined,
 			iconSize = 0,
-			variant = "primary",
+			variant = "none",
 			disabled = false,
 			top = false,
 			right = false,

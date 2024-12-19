@@ -48,7 +48,7 @@ export const StyledButton = styled.button<ButtonProps>`
 			${(props) =>
 				props.$active
 					? `background-color: ${props.theme.primary300}`
-					: `background-color: ${props.theme.dark300}`}
+					: `background-color: ${props.theme.primary300}`}
 		}
 	}
 	${(props) => props.$variant && variants[props.$variant]}
@@ -59,6 +59,7 @@ export const StyledButton = styled.button<ButtonProps>`
 `;
 
 const variants = {
+	none: css``,
 	primary: css`
 		background-color: ${(props) => props.theme.primary300};
 		&:not(:disabled) {

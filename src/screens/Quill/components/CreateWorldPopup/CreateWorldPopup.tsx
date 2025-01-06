@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 
 import { StyledPopup } from "./CreateWorldPopup.styles";
 import Scrim from "src/shared/components/Scrim/Scrim";
@@ -11,19 +12,33 @@ interface Props {
 	close: () => void;
 }
 
+type FormValues = {
+	name: string;
+	theme: string;
+	author: string;
+};
+
 const CreateWorldPopup: React.FC<Props> = ({ close }) => {
+	const {
+		register,
+		handleSubmit,
+		control,
+		formState: { errors },
+	} = useForm<FormValues>({
+		defaultValues: { name: "", theme: "", author: "" },
+	});
+
 	const [worldName, setWorldName] = useState("");
 	const [worldTheme, setWorldTheme] = useState("");
 	const [authorName, setAuthorName] = useState("");
 
-	const updateName = (input: string) => {
-		setWorldName(input);
-	};
-	const updateTheme = (value: string | number) => {
-		setWorldTheme(value.toString());
-	};
-	const updateAuthor = (input: string) => {
-		setAuthorName(input);
+	const onSubmit = (data: {
+		name: string;
+		theme: string;
+		author: string;
+	}) => {
+		console.log("Form submitted: ", data);
+		close();
 	};
 
 	const createWorld = (e: React.FormEvent) => {
@@ -43,34 +58,59 @@ const CreateWorldPopup: React.FC<Props> = ({ close }) => {
 			}}
 		>
 			<StyledPopup
-				onSubmit={createWorld}
-				onClick={(e) => e.stopPropagation()}
+				onSubmit={handleSubmit(onSubmit)}
+				onMouseDown={(e) => e.stopPropagation()}
 			>
 				<Label fontSize={32} style={{ marginBottom: "0.3em" }}>
 					Create New World
 				</Label>
+
 				<Label>World Name:</Label>
-				<Input onChange={updateName} required={true}></Input>
-				<Label>World Theme</Label>
-				<Select
-					options={[
-						{ value: "fantasy", label: "Fantasy" },
-						{ value: "scifi", label: "Sci-Fi" },
-						{ value: "cosmic", label: "Cosmic Horror" },
-						{ value: "steampunk", label: "Steampunk" },
-						{ value: "superhero", label: "Superhero" },
-						{ value: "western", label: "Western" },
-						{ value: "historic", label: "Historic" },
-						{ value: "modern", label: "Modern" },
-						{ value: "apocalyptic", label: "Apocalyptic" },
-						{ value: "dystopian", label: "Dystopian" },
-						{ value: "other", label: "Other" },
-					]}
-					placeholder="Choose a theme..."
-					onChange={updateTheme}
+				<Input
+					{...register("name", {
+						required: "A World name is required.",
+					})}
 				/>
+				{errors.name && (
+					<Label fontSize={24} style={{ color: "red" }}>
+						{errors.name.message}
+					</Label>
+				)}
+
+				<Label>World Theme</Label>
+				<Controller
+					name="theme"
+					control={control}
+					rules={{ required: "A theme choice is required." }}
+					render={({ field }) => (
+						<Select
+							{...field}
+							options={[
+								{ value: "fantasy", label: "Fantasy" },
+								{ value: "scifi", label: "Sci-Fi" },
+								{ value: "cosmic", label: "Cosmic Horror" },
+								{ value: "steampunk", label: "Steampunk" },
+								{ value: "superhero", label: "Superhero" },
+								{ value: "western", label: "Western" },
+								{ value: "historic", label: "Historic" },
+								{ value: "modern", label: "Modern" },
+								{ value: "apocalyptic", label: "Apocalyptic" },
+								{ value: "dystopian", label: "Dystopian" },
+								{ value: "other", label: "Other" },
+							]}
+							placeholder="Choose a theme..."
+						/>
+					)}
+				/>
+				{errors.theme && (
+					<Label fontSize={24} style={{ color: "red" }}>
+						{errors.theme.message}
+					</Label>
+				)}
+
 				<Label>Author Name (Optional):</Label>
-				<Input onChange={updateAuthor}></Input>
+				<Input {...register("author")}></Input>
+
 				<Button
 					style={{ marginTop: "0.3em" }}
 					variant="primary"

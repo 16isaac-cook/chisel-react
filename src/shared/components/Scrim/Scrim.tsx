@@ -11,7 +11,12 @@ interface Props {
 
 const Scrim: React.FC<Props> = ({ zIndex, close, style, children }) => {
 	return (
-		<StyledScrim $zIndex={zIndex} onClick={close} style={style} id="scrim">
+		<StyledScrim
+			$zIndex={zIndex}
+			onMouseDown={close}
+			style={style}
+			id="scrim"
+		>
 			{children}
 		</StyledScrim>
 	);

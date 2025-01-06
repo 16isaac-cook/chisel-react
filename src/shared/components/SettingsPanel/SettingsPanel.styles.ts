@@ -1,21 +1,8 @@
 import styled from "styled-components";
 
-import { modify } from "src/shared/util/styles";
-
 interface Props {
 	$panelVisible: boolean;
 }
-
-export const SettingsCover = styled.div<Props>`
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: ${(props) => modify.rgba(props.theme.dark100, 0.5)};
-	z-index: 999;
-	${(props) => (props.$panelVisible ? null : `display: none`)};
-`;
 
 export const StyledSettingsPanel = styled.div<Props>`
 	position: fixed;

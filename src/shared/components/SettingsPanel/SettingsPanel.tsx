@@ -2,11 +2,12 @@ import React from "react";
 
 import { fontDisplayNames, isFont } from "src/shared/util/styles";
 
-import { SettingsCover, StyledSettingsPanel } from "./SettingsPanel.styles";
+import { StyledSettingsPanel } from "./SettingsPanel.styles";
 import { useThemeContext } from "src/shared/context/theme-context";
 import { useFontContext } from "src/shared/context/font-context";
 import Label from "../Label/Label";
 import Select from "../Select/Select";
+import Scrim from "../Scrim/Scrim";
 
 interface PanelProps {
 	panelVisible: boolean;
@@ -18,7 +19,7 @@ const SettingsPanel: React.FC<PanelProps> = ({ panelVisible, onClick }) => {
 	const fontCtx = useFontContext();
 	return (
 		<div>
-			<SettingsCover $panelVisible={panelVisible} onClick={onClick} />
+			{panelVisible && <Scrim zIndex={999} close={onClick} />}
 			<StyledSettingsPanel $panelVisible={panelVisible}>
 				<Label style={{ margin: "0.3em 0" }}>Settings</Label>
 

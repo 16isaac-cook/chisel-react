@@ -1,7 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router";
-
-import { useThemeContext } from "src/shared/context/theme-context";
 
 import {
 	StyledTitleBar,
@@ -11,17 +9,12 @@ import {
 } from "./TitleBar.style";
 import Icon from "../Icon/Icon";
 import Link from "../Link/Link";
-import Button from "../Button/Button";
 import SettingsPanel from "../SettingsPanel/SettingsPanel";
 
 interface Props {
 	title: string;
 	home?: boolean;
 	back?: string;
-}
-
-interface SettingsProps {
-	panelVisible: boolean;
 }
 
 const TitleBar: React.FC<Props> = ({ title, home, back }) => {

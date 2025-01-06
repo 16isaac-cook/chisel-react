@@ -30,13 +30,14 @@ export const SelectedValue = styled.div`
 			background-color: ${(props) => props.theme.dark400};
 		}
 		&:active {
-			background-color: ${(props) => props.theme.dark300};
+			background-color: ${(props) => props.theme.primary300};
 		}
 	}
 	&:disabled {
 		opacity: 0.6;
 		cursor: default;
 	}
+	overflow-x: hidden;
 `;
 
 export const DropdownArrow = styled.div<{ $isOpen: boolean }>`
@@ -73,6 +74,6 @@ export const Option = styled.li`
 		background-color: ${(props) => props.theme.dark400};
 	}
 	&:active {
-		background-color: ${(props) => props.theme.dark300};
+		background-color: ${(props) => props.theme.primary300};
 	}
 `;

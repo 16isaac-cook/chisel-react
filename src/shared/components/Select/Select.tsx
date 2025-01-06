@@ -45,7 +45,11 @@ const Select: React.FC<Props> = ({
 	const [selectedValue, setSelectedValue] = useState<string | number | null>(
 		null
 	);
+	const [dropdownWidth, setDropdownWidth] = useState<number>(0);
+
 	const selectRef = useRef<HTMLDivElement | null>(null);
+	const valueRef = useRef<HTMLDivElement | null>(null);
+	const optionRefs = useRef<(HTMLLIElement | null)[]>([]);
 
 	const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -54,6 +58,26 @@ const Select: React.FC<Props> = ({
 		onChange(value);
 		setIsOpen(false);
 	};
+
+	useEffect(() => {
+		if (isOpen) {
+			const calcWidth = () => {
+				const items = optionRefs.current.map(
+					(option) => option?.getBoundingClientRect().width || 0
+				);
+				if (valueRef.current) {
+					items.push(valueRef.current.getBoundingClientRect().width);
+				}
+
+				const maxWidth = Math.max(...items);
+
+				if (maxWidth >= dropdownWidth) {
+					setDropdownWidth(maxWidth);
+				}
+			};
+			calcWidth();
+		}
+	}, [isOpen, options, dropdownWidth]);
 
 	useEffect(() => {
 		const outsideClick = (event: MouseEvent) => {
@@ -74,7 +98,11 @@ const Select: React.FC<Props> = ({
 
 	return (
 		<SelectContainer ref={selectRef} $margin={margin} fontSize={fontSize}>
-			<SelectedValue onClick={toggleDropdown}>
+			<SelectedValue
+				onClick={toggleDropdown}
+				style={{ width: dropdownWidth ? `${dropdownWidth}px` : "auto" }}
+				ref={valueRef}
+			>
 				{selectedValue
 					? options.find((option) => option.value === selectedValue)
 							?.label
@@ -82,10 +110,11 @@ const Select: React.FC<Props> = ({
 				<DropdownArrow $isOpen={isOpen} />
 			</SelectedValue>
 			<Dropdown $isOpen={isOpen}>
-				{options.map((option) => (
+				{options.map((option, index) => (
 					<Option
 						key={option.value}
 						onClick={() => handleSelect(option.value)}
+						ref={(el) => (optionRefs.current[index] = el)}
 					>
 						{option.label}
 					</Option>

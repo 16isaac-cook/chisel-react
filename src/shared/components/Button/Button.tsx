@@ -2,7 +2,11 @@ import { forwardRef, ReactNode, CSSProperties } from "react";
 
 import Icon, { IconName } from "../Icon/Icon";
 
-import { StyledButton, ButtonVariants } from "./Button.styles";
+import {
+	StyledButton,
+	StyledSubmitButton,
+	ButtonVariants,
+} from "./Button.styles";
 
 type Props = {
 	children?: ReactNode;
@@ -17,6 +21,7 @@ type Props = {
 	bottom?: boolean;
 	left?: boolean;
 	active?: boolean;
+	submit?: boolean;
 	onClick?: () => void;
 	style?: CSSProperties;
 	[key: string]: any;
@@ -37,6 +42,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 			bottom = false,
 			left = false,
 			active = false,
+			submit = false,
 			onClick = () => {},
 			style = undefined,
 			...buttonProps
@@ -48,6 +54,27 @@ const Button = forwardRef<HTMLButtonElement, Props>(
 				onClick();
 			}
 		};
+
+		if (submit) {
+			return (
+				<StyledSubmitButton
+					{...buttonProps}
+					onClick={handleClick}
+					fontSize={fontSize}
+					color={color}
+					$variant={variant}
+					$top={top}
+					$right={right}
+					$bottom={bottom}
+					$left={left}
+					$active={active}
+					disabled={disabled}
+					style={style}
+					type="submit"
+					value={String(children)}
+				/>
+			);
+		}
 
 		return (
 			<StyledButton

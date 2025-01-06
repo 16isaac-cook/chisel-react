@@ -7,6 +7,7 @@ import SmallTitle from "src/shared/components/SmallTitle/SmallTitle";
 import Panel from "src/shared/components/Panel/Panel";
 import Button from "src/shared/components/Button/Button";
 import Icon from "src/shared/components/Icon/Icon";
+import CreateWorldPopup from "./components/CreateWorldPopup/CreateWorldPopup";
 
 const Quill: React.FC = () => {
 	const navigate = useNavigate();
@@ -129,16 +130,23 @@ export const QuillHome: React.FC = () => {
 };
 
 export const QuillWorlds: React.FC = () => {
+	const [popupOpen, setPopupOpen] = useState(false);
+
+	const togglePopup = () => {
+		setPopupOpen(!popupOpen);
+	};
+
 	return (
 		<Container style={{ width: "100%" }} padding={false}>
 			<SmallTitle>Worlds</SmallTitle>
 			<Panel>
 				<Container></Container>
-				<Button style={{ width: "100%" }}>
-					Create New World{" "}
+				<Button style={{ width: "100%" }} onClick={togglePopup}>
+					Create New World
 					<Icon icon="add" style={{ marginLeft: "0.3em" }} />
 				</Button>
 			</Panel>
+			{popupOpen ? <CreateWorldPopup close={togglePopup} /> : null}
 		</Container>
 	);
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createHashRouter, RouterProvider } from "react-router";
 
 import Home from "src/screens/Home/Home";
 import GMTools from "src/screens/GMTools/GMTools";
@@ -15,7 +15,7 @@ import Scroll from "src/screens/Scroll/Scroll";
 import ManageContent from "src/screens/ManageContent/ManageContent";
 import HelpAndInfo from "src/screens/HelpAndInfo/HelpAndInfo";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
 	{
 		path: "/",
 		element: <Home />,

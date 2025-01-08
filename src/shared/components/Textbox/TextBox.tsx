@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 
-import { StyledInput } from "./Input.styles";
+import { StyledTextBox } from "./TextBox.styles";
 
-type Props = {
+interface Props {
 	value?: string | number;
 	fontSize?: number;
 	disabled?: boolean;
@@ -10,9 +10,9 @@ type Props = {
 	margin?: boolean;
 	onChange?: () => {};
 	[key: string]: any;
-};
+}
 
-const Input = forwardRef<HTMLInputElement, Props>(
+const TextBox = forwardRef<HTMLTextAreaElement, Props>(
 	(
 		{
 			value,
@@ -21,13 +21,13 @@ const Input = forwardRef<HTMLInputElement, Props>(
 			filter,
 			margin = true,
 			onChange = () => {},
-			...inputProps
+			...textBoxProps
 		},
 		ref
 	) => {
 		return (
-			<StyledInput
-				{...inputProps}
+			<StyledTextBox
+				{...textBoxProps}
 				value={value}
 				fontSize={fontSize}
 				disabled={disabled}
@@ -39,4 +39,4 @@ const Input = forwardRef<HTMLInputElement, Props>(
 	}
 );
 
-export default Input;
+export default TextBox;

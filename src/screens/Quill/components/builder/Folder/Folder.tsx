@@ -5,7 +5,7 @@ import {
 	FolderLabel,
 	Dropdown,
 	DropdownArrow,
-} from "./ExplorerFolder.styles";
+} from "./Folder.styles";
 import Icon, { IconName } from "src/shared/components/Icon/Icon";
 import Label from "src/shared/components/Label/Label";
 import Container from "src/shared/components/Container/Container";

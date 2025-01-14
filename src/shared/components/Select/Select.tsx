@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 import {
 	SelectContainer,
@@ -7,6 +7,8 @@ import {
 	Option,
 	DropdownArrow,
 } from "./Select.styles";
+
+import { fontDisplayNames } from "src/shared/util/styles";
 
 /*
 Farmat like this:
@@ -125,15 +127,24 @@ const Select = forwardRef<HTMLDivElement, Props>(
 					<DropdownArrow $isOpen={isOpen} />
 				</SelectedValue>
 				<Dropdown $isOpen={isOpen}>
-					{options.map((option, index) => (
-						<Option
-							key={option.value}
-							onClick={() => handleSelect(option.value)}
-							ref={(el) => (optionRefs.current[index] = el)}
-						>
-							{option.label}
-						</Option>
-					))}
+					{options.map((option, index) => {
+						const fontFamily = Object.values(
+							fontDisplayNames
+						).includes(option.label)
+							? option.label
+							: undefined;
+						console.log(fontFamily);
+						return (
+							<Option
+								key={option.value}
+								onClick={() => handleSelect(option.value)}
+								ref={(el) => (optionRefs.current[index] = el)}
+								style={{ fontFamily }}
+							>
+								{option.label}
+							</Option>
+						);
+					})}
 				</Dropdown>
 			</SelectContainer>
 		);

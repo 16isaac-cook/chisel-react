@@ -9,11 +9,21 @@ import Button from "src/shared/components/Button/Button";
 import Icon from "src/shared/components/Icon/Icon";
 import CreateWorldPopup from "./components/CreateWorldPopup/CreateWorldPopup";
 
+import { useTauriContext } from "src/shared/context/tauri-context";
+
+const json = {
+	test1: "test",
+	test2: "test",
+	test3: "test",
+};
+
 const Quill: React.FC = () => {
 	const navigate = useNavigate();
 
 	const [currentPage, setCurrentPage] = useState("home");
 	const [currentWorld, setCurrentWorld] = useState();
+
+	const ctx = useTauriContext();
 
 	return (
 		<Page title="Quill" back="/gm-tools">
@@ -112,6 +122,15 @@ const Quill: React.FC = () => {
 					padding={false}
 				>
 					<Outlet />
+					<Button
+						onClick={() =>
+							console.log(
+								ctx.loadFile("test/testing", "test.json")
+							)
+						}
+					>
+						test
+					</Button>
 				</Container>
 			</Container>
 		</Page>

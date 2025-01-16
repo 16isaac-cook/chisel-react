@@ -7,6 +7,7 @@ import Routes from "./Routes";
 import "./Fonts.css";
 import "remixicon/fonts/remixicon.css";
 import { themes } from "src/shared/util/styles";
+import { TauriContextProvider } from "src/shared/context/tauri-context";
 import {
 	ThemeContextProvider,
 	useThemeContext,
@@ -31,11 +32,13 @@ const App: React.FC = () => {
 
 const AppWrapper: React.FC = () => {
 	return (
-		<ThemeContextProvider>
-			<FontContextProvider>
-				<App />
-			</FontContextProvider>
-		</ThemeContextProvider>
+		<TauriContextProvider>
+			<ThemeContextProvider>
+				<FontContextProvider>
+					<App />
+				</FontContextProvider>
+			</ThemeContextProvider>
+		</TauriContextProvider>
 	);
 };
 

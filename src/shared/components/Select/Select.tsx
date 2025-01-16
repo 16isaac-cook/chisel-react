@@ -133,7 +133,6 @@ const Select = forwardRef<HTMLDivElement, Props>(
 						).includes(option.label)
 							? option.label
 							: undefined;
-						console.log(fontFamily);
 						return (
 							<Option
 								key={option.value}

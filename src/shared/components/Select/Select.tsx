@@ -8,6 +8,8 @@ import {
 	DropdownArrow,
 } from "./Select.styles";
 
+import Icon, { IconName } from "../Icon/Icon";
+
 import { fontDisplayNames } from "src/shared/util/styles";
 
 /*
@@ -23,10 +25,11 @@ Farmat like this:
     }
 ]
 */
-interface OptionProps {
+type OptionProps = {
 	value: string | number;
 	label: string;
-}
+	icon?: IconName;
+};
 
 type Props = {
 	options: OptionProps[];
@@ -104,6 +107,8 @@ const Select = forwardRef<HTMLDivElement, Props>(
 			};
 		}, [selectRef]);
 
+		const selectedOption = options.find((option) => option.value === value);
+
 		return (
 			<SelectContainer
 				ref={(node) => {
@@ -120,10 +125,13 @@ const Select = forwardRef<HTMLDivElement, Props>(
 					}}
 					ref={valueRef}
 				>
-					{value
-						? options.find((option) => option.value === value)
-								?.label
-						: placeholder}
+					<div>
+						{selectedOption?.icon && (
+							<Icon icon={selectedOption.icon} right={true} />
+						)}
+						{selectedOption ? selectedOption.label : placeholder}
+					</div>
+
 					<DropdownArrow $isOpen={isOpen} />
 				</SelectedValue>
 				<Dropdown $isOpen={isOpen}>
@@ -140,6 +148,9 @@ const Select = forwardRef<HTMLDivElement, Props>(
 								ref={(el) => (optionRefs.current[index] = el)}
 								style={{ fontFamily }}
 							>
+								{option.icon ? (
+									<Icon icon={option.icon} right={true} />
+								) : null}
 								{option.label}
 							</Option>
 						);

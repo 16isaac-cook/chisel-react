@@ -19,6 +19,9 @@
 		{
 			"identifier": "fs:scope-applocaldata-recursive",
 			"allow": [{ "path": "$APPLOCALDATA/userData/**" }]
-		}
+		},
+		"dialog:default",
+		"websocket:default",
+		"window-state:default"
 	]
 }

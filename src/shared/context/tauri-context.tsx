@@ -4,17 +4,24 @@ import {
 	readTextFile,
 	exists,
 	mkdir,
-	remove,
+	// remove,
+	readDir,
+	DirEntry,
 	BaseDirectory,
 } from "@tauri-apps/plugin-fs";
 import { join, dataDir } from "@tauri-apps/api/path";
 
 interface TauriContextType {
 	checkExists: (path: string) => Promise<boolean | void>;
+	readDirectory: (path: string) => Promise<DirEntry[] | undefined>;
 	mkDir: (path: string) => Promise<void>;
 	//removeDir: (path: string) => Promise<void>;
 	saveFile: (path: string, fileName: string, data: object) => Promise<void>;
-	loadFile: (path: string, fileName: string) => Promise<object | null>;
+	loadFile: (
+		path: string,
+		fileName: string,
+		parse?: boolean
+	) => Promise<object | string | null>;
 }
 
 const TauriContext = createContext<TauriContextType | undefined>(undefined);
@@ -33,6 +40,17 @@ export const TauriContextProvider: React.FC<TauriContextProviderProps> = ({
 				baseDir: BaseDirectory.AppLocalData,
 			});
 			return check;
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const readDirectory = async (path: string) => {
+		try {
+			const fullPath = await join("userData", path);
+			return await readDir(fullPath, {
+				baseDir: BaseDirectory.AppLocalData,
+			});
 		} catch (error) {
 			console.error(error);
 		}
@@ -71,7 +89,11 @@ export const TauriContextProvider: React.FC<TauriContextProviderProps> = ({
 		}
 	};
 
-	const loadFile = async (path: string, fileName: string) => {
+	const loadFile = async (
+		path: string,
+		fileName: string,
+		parse: boolean = true
+	) => {
 		try {
 			const fullPath = await join("userData", path);
 
@@ -81,9 +103,13 @@ export const TauriContextProvider: React.FC<TauriContextProviderProps> = ({
 				baseDir: BaseDirectory.AppLocalData,
 			});
 
-			const data = JSON.parse(fileContent);
+			if (parse) {
+				const data = JSON.parse(fileContent);
 
-			return data;
+				return data;
+			} else {
+				return fileContent;
+			}
 		} catch (error) {
 			console.error("Error loading JSON file '" + fileName + "':", error);
 			return null;
@@ -92,7 +118,7 @@ export const TauriContextProvider: React.FC<TauriContextProviderProps> = ({
 
 	return (
 		<TauriContext.Provider
-			value={{ saveFile, loadFile, checkExists, mkDir }}
+			value={{ saveFile, loadFile, checkExists, mkDir, readDirectory }}
 		>
 			{children}
 		</TauriContext.Provider>

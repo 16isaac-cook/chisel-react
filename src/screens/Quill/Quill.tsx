@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 
 import Page from "src/shared/components/Page/Page";
@@ -7,9 +7,12 @@ import SmallTitle from "src/shared/components/SmallTitle/SmallTitle";
 import Panel from "src/shared/components/Panel/Panel";
 import Button from "src/shared/components/Button/Button";
 import Icon from "src/shared/components/Icon/Icon";
-import CreateWorldPopup from "./components/CreateWorldPopup/CreateWorldPopup";
+import CreateWorldPopup from "./components/worlds/CreateWorldPopup/CreateWorldPopup";
+import Label from "src/shared/components/Label/Label";
 
 import { useTauriContext } from "src/shared/context/tauri-context";
+import { worldThemes } from "./constants/worldThemes";
+import WorldList from "./components/worlds/WorldList/WorldList";
 
 const json = {
 	test1: "test",
@@ -22,8 +25,6 @@ const Quill: React.FC = () => {
 
 	const [currentPage, setCurrentPage] = useState("home");
 	const [currentWorld, setCurrentWorld] = useState();
-
-	const ctx = useTauriContext();
 
 	return (
 		<Page title="Quill" back="/gm-tools">
@@ -122,15 +123,6 @@ const Quill: React.FC = () => {
 					padding={false}
 				>
 					<Outlet />
-					<Button
-						onClick={() =>
-							console.log(
-								ctx.loadFile("test/testing", "test.json")
-							)
-						}
-					>
-						test
-					</Button>
 				</Container>
 			</Container>
 		</Page>
@@ -149,23 +141,100 @@ export const QuillHome: React.FC = () => {
 };
 
 export const QuillWorlds: React.FC = () => {
+	const ctx = useTauriContext();
+
 	const [popupOpen, setPopupOpen] = useState(false);
+
+	type WorldType = {
+		worldId: string;
+		name: string;
+		theme: keyof typeof worldThemes;
+		author: string;
+		dateCreated: string;
+	};
+	const [worlds, setWorlds] = useState<WorldType[]>([]);
+	const [loading, setLoading] = useState(true);
 
 	const togglePopup = () => {
 		setPopupOpen(!popupOpen);
 	};
 
+	const switchToWorld = (worldName: string) => {
+		console.log(worldName);
+	};
+
+	const loadWorlds = async () => {
+		setLoading(true);
+		const worldList = await ctx.readDirectory("quill/worlds");
+		if (worldList) {
+			for (const world of worldList) {
+				const worldInfo = await ctx.loadFile(
+					"quill/worlds/" + world.name,
+					"worldinfo.json",
+					false
+				);
+				if (typeof worldInfo === "string") {
+					const parsed: WorldType = JSON.parse(worldInfo);
+
+					setWorlds((oldSet) => {
+						if (
+							oldSet.some(
+								(existingItem) =>
+									existingItem.worldId === parsed.worldId
+							)
+						) {
+							return oldSet;
+						}
+						return [...oldSet, parsed];
+					});
+				}
+			}
+		}
+		console.log(worlds);
+		setLoading(false);
+	};
+
+	useEffect(() => {
+		loadWorlds();
+	}, [JSON.stringify([...worlds])]);
+
+	if (loading) {
+		return (
+			<Container style={{ width: "100%" }} padding={false}>
+				<SmallTitle>Worlds</SmallTitle>
+				<Panel
+					style={{ justifyContent: "center", alignItems: "center" }}
+				>
+					<Label>Loading worlds...</Label>
+				</Panel>
+			</Container>
+		);
+	}
+
 	return (
 		<Container style={{ width: "100%" }} padding={false}>
 			<SmallTitle>Worlds</SmallTitle>
 			<Panel>
-				<Container></Container>
+				<Container style={{ width: "100%" }}>
+					<WorldList
+						worlds={worlds.map((world) => {
+							return {
+								worldId: world.worldId,
+								label: world.name,
+								theme: world.theme,
+							};
+						})}
+						switchToWorld={switchToWorld}
+					/>
+				</Container>
 				<Button style={{ width: "100%" }} onClick={togglePopup}>
 					Create New World
 					<Icon icon="add" style={{ marginLeft: "0.3em" }} />
 				</Button>
 			</Panel>
-			{popupOpen ? <CreateWorldPopup close={togglePopup} /> : null}
+			{popupOpen ? (
+				<CreateWorldPopup close={togglePopup} reload={loadWorlds} />
+			) : null}
 		</Container>
 	);
 };

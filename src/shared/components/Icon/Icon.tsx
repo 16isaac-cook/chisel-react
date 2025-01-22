@@ -48,6 +48,12 @@ const iconCodes = {
 	title: "vip-crown-fill",
 	tradition: "chat-history-fill",
 	vehicle: "riding-line",
+	brain: "brain-fill",
+	cactus: "cactus-fill",
+	scraper: "building-2-fill",
+	skull: "skull-fill",
+	unhappy: "emotion-unhappy-fill",
+	sparkle: "sparkling-2-fill",
 } as const;
 
 export type IconName = keyof typeof iconCodes;

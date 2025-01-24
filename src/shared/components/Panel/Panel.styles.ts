@@ -32,7 +32,7 @@ export const StyledPanel = styled.div<PanelProps>`
 
 export const StyledPanelTitle = styled.div`
 	text-align: center;
-	${font.size("small")};
+	font-size: ${font.size("small")};
 	color: ${(props) => props.theme.dark600};
 	margin-bottom: 0.3em;
 `;

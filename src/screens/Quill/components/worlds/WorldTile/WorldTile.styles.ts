@@ -59,5 +59,5 @@ export const TileFooter = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	${font.size("big")}
+	font-size: ${font.size("big")};
 `;

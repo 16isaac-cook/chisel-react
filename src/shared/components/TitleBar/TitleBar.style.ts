@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { modify } from "src/shared/util/styles";
+import { font, modify } from "src/shared/util/styles";
 
 interface SettingsProps {
 	panelVisible: boolean;
@@ -22,19 +22,19 @@ export const StyledTitleBar = styled.div`
 export const TitleBarBackButton = styled.div`
 	position: absolute;
 	left: 0;
-	font-size: 24px;
+	font-size: ${font.size("big")};
 	margin-left: 0.3em;
 `;
 
 export const TitleBarTitle = styled.div`
 	text-align: center;
-	font-size: 24px;
+	font-size: ${font.size("big")};
 `;
 
 export const TitleBarSettingsButton = styled.div`
 	position: absolute;
 	right: 0;
-	font-size: 24px;
+	font-size: ${font.size("big")};
 	margin-right: 0.3em;
 `;
 

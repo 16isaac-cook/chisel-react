@@ -138,7 +138,7 @@ const variants = {
 	`,
 	big: css`
 		justify-content: left;
-		${font.size("huge")};
+		font-size: ${font.size("huge")};
 	`,
 	vertical: css`
 		flex-direction: column;

@@ -14,7 +14,7 @@ export default createGlobalStyle<{ font: FontName }>`
 
     body {
         background-color: ${(props) => props.theme.dark100};
-        ${font.size("normal")};
+        font-size: ${font.size("normal")};
         ${(props) => (props.font ? font.family(props.font) : null)}
         position: absolute;
         top: 0;

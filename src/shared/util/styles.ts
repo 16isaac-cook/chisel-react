@@ -142,20 +142,20 @@ type FontSizes = {
 	giant: string;
 };
 
-const fontSizes: FontSizes = {
-	tiny: "font-size: 12px;",
-	small: "font-size: 14px;",
-	normal: "font-size: 16px;",
-	big: "font-size: 24px;",
-	huge: "font-size: 32px;",
-	giant: "font-size: 48px;",
+export const fontSizes: FontSizes = {
+	tiny: "clamp(8px, 0.625vw, 12px);",
+	small: "clamp(10px, 0.729vw, 14px);",
+	normal: "clamp(12px, 0.833vw, 16px);",
+	big: "clamp(14px, 1.25vw, 24px);",
+	huge: "clamp(20px, 1.667vw, 32px);",
+	giant: "clamp(28px, 2.5vw, 48px);",
 };
 
 export const font = {
 	family: (font: FontName) => fontFamilies[font],
 	size: (size: number | keyof FontSizes): string => {
 		if (typeof size === "number") {
-			return `font-size: ${size}px;`;
+			return `${size}px;`;
 		} else {
 			return fontSizes[size];
 		}

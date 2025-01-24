@@ -1,9 +1,10 @@
 import { styled } from "styled-components";
 
-import { modify } from "src/shared/util/styles";
+import { fontSizes } from "src/shared/util/styles";
+import { modify, font } from "src/shared/util/styles";
 
 interface Props {
-	fontSize?: number;
+	fontSize: number | keyof typeof fontSizes;
 	$margin?: boolean;
 }
 
@@ -11,7 +12,7 @@ export const FolderContainer = styled.div<Props>`
 	position: relative;
 	margin: ${(props) => (props.$margin ? `0.3em` : `0`)};
 	font-size: ${(props) =>
-		props.fontSize === 0 ? `inherit` : `${props.fontSize}px`};
+		props.fontSize === 0 ? `inherit` : `${font.size(props.fontSize)}`};
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

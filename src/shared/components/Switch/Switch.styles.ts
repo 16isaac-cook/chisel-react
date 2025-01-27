@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { modify } from "../../util/styles";
+import { clickable, modify } from "../../util/styles";
 
 interface Props {
 	$margin?: boolean;
@@ -34,7 +34,7 @@ export const SwitchInput = styled.input`
 
 export const SwitchSlider = styled.span`
 	position: absolute;
-	${modify.clickable}
+	${clickable.basic}
 	top: 0;
 	left: 0;
 	right: 0;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { modify } from "src/shared/util/styles";
+import { modify, clickable } from "src/shared/util/styles";
 
 interface Props {
 	fontSize?: number;
@@ -24,15 +24,7 @@ export const SelectedValue = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	${modify.clickable}
-	&:not(:disabled) {
-		&:hover {
-			background-color: ${(props) => props.theme.dark400};
-		}
-		&:active {
-			background-color: ${(props) => props.theme.primary300};
-		}
-	}
+	${clickable.normal}
 	&:disabled {
 		opacity: 0.6;
 		cursor: default;
@@ -69,11 +61,5 @@ export const Dropdown = styled.ul<{ $isOpen: boolean }>`
 
 export const Option = styled.li`
 	padding: 0.3em;
-	${modify.clickable}
-	&:hover {
-		background-color: ${(props) => props.theme.dark400};
-	}
-	&:active {
-		background-color: ${(props) => props.theme.primary300};
-	}
+	${clickable.transparent}
 `;

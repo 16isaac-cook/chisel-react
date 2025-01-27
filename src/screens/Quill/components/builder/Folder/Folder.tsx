@@ -10,16 +10,16 @@ import Icon, { IconName } from "src/shared/components/Icon/Icon";
 import Label from "src/shared/components/Label/Label";
 import Container from "src/shared/components/Container/Container";
 
-interface Props {
+type Props = {
 	icon: IconName;
 	label: string;
 	margin?: boolean;
 	fontSize?: number;
 	children?: ReactNode;
 	[key: string]: any;
-}
+};
 
-const ExplorerFolder: React.FC<Props> = ({
+const Folder: React.FC<Props> = ({
 	icon,
 	label,
 	margin = true,
@@ -41,9 +41,9 @@ const ExplorerFolder: React.FC<Props> = ({
 
 				<DropdownArrow $isOpen={isOpen} />
 			</FolderLabel>
-			<Dropdown $isOpen={isOpen}>{children}</Dropdown>
+			<Dropdown $isOpen={isOpen}>ah</Dropdown>
 		</FolderContainer>
 	);
 };
 
-export default ExplorerFolder;
+export default Folder;

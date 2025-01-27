@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { font, modify } from "../../util/styles";
+import { font, modify, clickable } from "../../util/styles";
 
 export type ButtonVariants = keyof typeof variants | null;
 
@@ -27,7 +27,7 @@ export const StyledButton = styled.button<ButtonProps>`
 	margin-right: ${(props) => (props.$right ? `0.3em` : null)};
 	margin-bottom: ${(props) => (props.$bottom ? `0.3em` : null)};
 	margin-left: ${(props) => (props.$left ? `0.3em` : null)};
-	${modify.clickable};
+	${clickable.basic};
 	border-radius: 5px;
 	text-align: center;
 	font-size: ${(props) =>
@@ -70,7 +70,7 @@ export const StyledSubmitButton = styled.input<ButtonProps>`
 	margin-right: ${(props) => (props.$right ? `0.3em` : null)};
 	margin-bottom: ${(props) => (props.$bottom ? `0.3em` : null)};
 	margin-left: ${(props) => (props.$left ? `0.3em` : null)};
-	${modify.clickable};
+	${clickable.basic};
 	border-radius: 5px;
 	text-align: center;
 	font-size: ${(props) =>
@@ -90,8 +90,8 @@ export const StyledSubmitButton = styled.input<ButtonProps>`
 		&:active {
 			${(props) =>
 				props.$active
-					? `background-color: ${props.theme.primary300}`
-					: `background-color: ${props.theme.primary300}`}
+					? `background-color: ${props.theme.primary200}`
+					: `background-color: ${props.theme.primary200}`}
 		}
 	}
 	${(props) => props.$variant && variants[props.$variant]}

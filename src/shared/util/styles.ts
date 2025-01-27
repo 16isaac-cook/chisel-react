@@ -9,10 +9,6 @@ export const modify = {
 		Color(colorVal).lighten(amount).string(),
 	rgba: (colorVal: string, opacity: number) =>
 		Color(colorVal).alpha(opacity).string(),
-	clickable: css`
-		cursor: pointer;
-		user-select: none;
-	`,
 	fill: css`
 		position: absolute;
 		top: 0;
@@ -95,6 +91,66 @@ export const themes: Theme = {
 		dark600: modify.lighten(colors.dark600, 2.2),
 		font: "#000",
 	},
+};
+
+export const clickable = {
+	basic: css`
+		cursor: pointer;
+		user-select: none;
+	`,
+	normal: css`
+		cursor: pointer;
+		user-select: none;
+		background-color: ${(props) => props.theme.dark300};
+		&:not(:disabled) {
+			&:hover {
+				background-color: ${(props) => props.theme.dark400};
+			}
+			&:active {
+				background-color: ${(props) => props.theme.primary200};
+			}
+		}
+	`,
+	transparent: css`
+		cursor: pointer;
+		user-select: none;
+		background-color: transparent;
+		&:not(:disabled) {
+			&:hover {
+				background-color: ${(props) => props.theme.dark400};
+			}
+			&:active {
+				background-color: ${(props) => props.theme.primary200};
+			}
+		}
+	`,
+	primary: css`
+		cursor: pointer;
+		user-select: none;
+		background-color: ${(props) => props.theme.primary300};
+		&:not(:disabled) {
+			&:hover {
+				background-color: ${(props) => props.theme.primary400};
+			}
+			&:active {
+				background-color: ${(props) => props.theme.primary200};
+			}
+		}
+	`,
+	link: css`
+		cursor: pointer;
+		user-select: none;
+		color: ${(props) => props.theme.primary300};
+		background-color: transparent;
+		&:not(:disabled) {
+			&:hover {
+				color: ${(props) => props.theme.primary400};
+			}
+			&:active {
+				color: ${(props) => props.theme.primary200};
+			}
+		}
+	`,
 };
 
 export type FontName =

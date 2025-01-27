@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-import { modify, font } from "src/shared/util/styles";
+import { modify, font, clickable } from "src/shared/util/styles";
 
 export const StyledWorldTile = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	background-color: ${(props) => props.theme.dark300};
 	width: fit-content;
 	min-width: 18%;
 	min-height: 28%;
@@ -15,13 +14,7 @@ export const StyledWorldTile = styled.div`
 	max-height: 28%;
 	border-radius: 0.3em;
 	margin-bottom: 0.6em;
-	${modify.clickable};
-	&:hover {
-		background-color: ${(props) => props.theme.dark400};
-	}
-	&:active {
-		background-color: ${(props) => props.theme.primary300};
-	}
+	${clickable.normal};
 
 	&:hover img {
 		transform: scale(1.2, 1.2) translateY(-40%);

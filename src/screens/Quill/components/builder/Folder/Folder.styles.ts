@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-import { fontSizes } from "src/shared/util/styles";
+import { clickable, fontSizes } from "src/shared/util/styles";
 import { modify, font } from "src/shared/util/styles";
 
 interface Props {
@@ -31,7 +31,7 @@ export const FolderLabel = styled.div<{ $isOpen: boolean }>`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	${modify.clickable}
+	${clickable.basic}
 	&:not(:disabled) {
 		&:hover {
 			background-color: ${(props) =>
@@ -39,7 +39,7 @@ export const FolderLabel = styled.div<{ $isOpen: boolean }>`
 		}
 		&:active {
 			background-color: ${(props) =>
-				props.$isOpen ? props.theme.primary300 : props.theme.dark300};
+				props.$isOpen ? props.theme.primary200 : props.theme.dark300};
 		}
 	}
 	&:disabled {
@@ -61,11 +61,11 @@ export const DropdownArrow = styled.div<{ $isOpen: boolean }>`
 `;
 
 export const Dropdown = styled.ul<{ $isOpen: boolean }>`
-	width: 90%;
+	width: 100%;
 	max-height: 300px;
 	overflow-y: auto;
-	margin-top: 0.15em;
-	padding: 0;
+	margin-top: 0.3em;
+	padding: 0em 0.9em 0em 0.3em;
 	list-style: none;
 	border: 0;
 	border-radius: 5px;
@@ -75,11 +75,5 @@ export const Dropdown = styled.ul<{ $isOpen: boolean }>`
 
 export const Item = styled.li`
 	padding: 0.3em;
-	${modify.clickable}
-	&:hover {
-		background-color: ${(props) => props.theme.dark400};
-	}
-	&:active {
-		background-color: ${(props) => props.theme.dark300};
-	}
+	${clickable.normal}
 `;

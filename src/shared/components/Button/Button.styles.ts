@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { font, modify, clickable } from "../../util/styles";
+import { font, clickable } from "../../util/styles";
 
 export type ButtonVariants = keyof typeof variants | null;
 

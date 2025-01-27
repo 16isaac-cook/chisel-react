@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { modify, clickable } from "src/shared/util/styles";
+import { clickable } from "src/shared/util/styles";
 
 interface Props {
 	fontSize?: number;

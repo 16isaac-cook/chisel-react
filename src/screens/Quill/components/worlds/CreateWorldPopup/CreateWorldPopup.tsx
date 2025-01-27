@@ -13,7 +13,6 @@ import { useTauriContext } from "src/shared/context/tauri-context";
 import { formatString, getDate } from "src/shared/util/functions";
 import { builderObjects } from "../../../constants/builderObjects";
 import { worldThemes } from "src/screens/Quill/constants/worldThemes";
-import Container from "src/shared/components/Container/Container";
 import Panel from "src/shared/components/Panel/Panel";
 
 interface Props {
@@ -61,7 +60,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
 		await ctx.mkDir(fullPath);
 		await ctx.saveFile(fullPath, "worldinfo.json", json);
 
-		for (const [key, value] of Object.entries(builderObjects)) {
+		for (const [key] of Object.entries(builderObjects)) {
 			await ctx.mkDir(`${fullPath}/${key}`);
 		}
 		setCreating(false);

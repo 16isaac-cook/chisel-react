@@ -1,8 +1,9 @@
 import { styled } from "styled-components";
 
-import { modify, font, fontSizes, clickable } from "src/shared/util/styles";
+import { clickable } from "src/shared/util/styles";
 
-const StyledFolderItem = styled.li`
+export const StyledFolderItem = styled.li`
+	flex: 0 1 0;
 	background-color: ${(props) => props.theme.dark300};
 	padding: 0.3em;
 	margin-bottom: 0.3em;
@@ -10,6 +11,7 @@ const StyledFolderItem = styled.li`
 	${clickable.normal};
 	user-select: none;
 	overflow-x: hidden;
+	text-wrap: nowrap;
 	&:last-of-type {
 		margin-bottom: 0;
 	}

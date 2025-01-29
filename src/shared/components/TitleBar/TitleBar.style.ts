@@ -61,5 +61,5 @@ export const SettingsPanel = styled.div<SettingsProps>`
 	display: flex;
 	flex-direction: column;
 	padding: 0.3em;
-	border-radius: 0.3em 0 0 0.3em;
+	border-radius: 5px 0 0 0.3em;
 `;

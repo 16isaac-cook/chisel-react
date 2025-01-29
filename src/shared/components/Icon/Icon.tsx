@@ -25,7 +25,7 @@ const iconCodes = {
 	condition: "alert-fill",
 	conflict: "sword-fill",
 	country: "government-fill",
-	currency: "coinds-fill",
+	currency: "coins-fill",
 	deity: "psychotherapy-fill",
 	document: "file-paper-2-fill",
 	ethnicity: "walk-fill",

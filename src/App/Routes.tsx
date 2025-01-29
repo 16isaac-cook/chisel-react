@@ -8,6 +8,7 @@ import Quill, {
 	QuillWorlds,
 	QuillSettings,
 	QuillHelp,
+	QuillBuilder,
 } from "src/screens/Quill/Quill";
 import Hammer from "src/screens/Hammer/Hammer";
 import PlayerTools from "src/screens/PlayerTools/PlayerTools";
@@ -35,6 +36,10 @@ const router = createHashRouter([
 			{
 				path: "worlds",
 				element: <QuillWorlds />,
+			},
+			{
+				path: "builder/:worldId",
+				element: <QuillBuilder />,
 			},
 			{
 				path: "settings",

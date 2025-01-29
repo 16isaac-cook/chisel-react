@@ -6,6 +6,7 @@ import Panel from "src/shared/components/Panel/Panel";
 import Label from "src/shared/components/Label/Label";
 import Container from "src/shared/components/Container/Container";
 import Button from "src/shared/components/Button/Button";
+import { font } from "src/shared/util/styles";
 
 const Home: React.FC = () => {
 	const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Home: React.FC = () => {
 				>
 					placeholder
 				</div>
-				<Label fontSize={32}>
+				<Label fontSize={font.size("huge")}>
 					Welcome to the Chisel TTRPG tool! A one-stop-shop for all
 					things TTRPG.
 				</Label>

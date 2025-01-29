@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 
 import Page from "src/shared/components/Page/Page";
 import Button from "src/shared/components/Button/Button";
+import { font } from "src/shared/util/styles";
 
 const GMTools: React.FC = () => {
 	const navigate = useNavigate();
@@ -9,8 +10,8 @@ const GMTools: React.FC = () => {
 	return (
 		<Page title="GM Tools" home={true} back="/">
 			<Button
-				fontSize={20}
-				iconSize={48}
+				fontSize={font.size("big")}
+				iconSize={font.size("giant")}
 				variant="vertical"
 				icon="quill"
 				onClick={() => {
@@ -20,8 +21,8 @@ const GMTools: React.FC = () => {
 				Quill
 			</Button>
 			<Button
-				fontSize={20}
-				iconSize={48}
+				fontSize={font.size("big")}
+				iconSize={font.size("giant")}
 				variant="vertical"
 				icon="hammer"
 				onClick={() => {

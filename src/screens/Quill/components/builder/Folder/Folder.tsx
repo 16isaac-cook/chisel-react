@@ -1,4 +1,7 @@
-import React, { useState, ReactNode } from "react";
+import React, { useState, ReactNode, useEffect, useCallback } from "react";
+import { useTauriContext } from "src/shared/context/tauri-context";
+
+import { WorldObject } from "src/screens/Quill/types/quill.types";
 
 import {
 	FolderContainer,
@@ -9,39 +12,76 @@ import {
 import Icon, { IconName } from "src/shared/components/Icon/Icon";
 import Label from "src/shared/components/Label/Label";
 import Container from "src/shared/components/Container/Container";
+import FolderItem from "../FolderItem/FolderItem";
 
 type Props = {
 	icon: IconName;
-	label: string;
-	margin?: boolean;
 	fontSize?: number;
 	children?: ReactNode;
-	[key: string]: any;
+	worldId: string;
+	folderId: string;
+	itemList?: string[];
 };
 
 const Folder: React.FC<Props> = ({
 	icon,
-	label,
-	margin = true,
 	fontSize = 0,
 	children,
-	...folderProps
+	worldId,
+	folderId,
+	itemList,
 }) => {
+	const tauri = useTauriContext();
+
 	const [isOpen, setIsOpen] = useState(false);
+	const [items, setItems] = useState<WorldObject[]>();
 
 	const toggleDropdown = () => setIsOpen(!isOpen);
 
+	const getItems = useCallback(async () => {
+		try {
+			if (itemList) {
+				const newList: WorldObject[] = [];
+				itemList.forEach(async (item) => {
+					const getItem = await tauri.loadFile(
+						`quill/worlds/${worldId}/${folderId}`,
+						item,
+						false
+					);
+					if (typeof getItem === "string") {
+						const parsed: WorldObject = JSON.parse(getItem);
+						newList.push(parsed);
+					}
+				});
+				setItems(newList);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}, [folderId, itemList, tauri, worldId]);
+
+	useEffect(() => {
+		getItems();
+	}, [getItems]);
+
 	return (
-		<FolderContainer $margin={margin} fontSize={fontSize}>
+		<FolderContainer fontSize={fontSize}>
 			<FolderLabel onClick={toggleDropdown} $isOpen={isOpen}>
 				<Container column={false} padding={false} justify="flex-start">
 					<Icon icon={icon} right={true} />
-					<Label>{label}</Label>
+					<Label>{children}</Label>
 				</Container>
-
 				<DropdownArrow $isOpen={isOpen} />
 			</FolderLabel>
-			<Dropdown $isOpen={isOpen}>ah</Dropdown>
+			<Dropdown $isOpen={isOpen}>
+				{items?.map((item, index) => {
+					return (
+						<FolderItem key={`item${index}`}>
+							{item.name}
+						</FolderItem>
+					);
+				})}
+			</Dropdown>
 		</FolderContainer>
 	);
 };

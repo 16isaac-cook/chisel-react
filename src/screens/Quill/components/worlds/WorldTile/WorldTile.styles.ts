@@ -12,7 +12,7 @@ export const StyledWorldTile = styled.div`
 	min-height: 28%;
 	max-width: 18%;
 	max-height: 28%;
-	border-radius: 0.3em;
+	border-radius: 5px;
 	margin-bottom: 0.6em;
 	${clickable.normal};
 
@@ -26,7 +26,7 @@ export const StyledWorldTile = styled.div`
 
 export const TileImageBox = styled.div`
 	width: 100%;
-	border-radius: 0.3em 0.3em 0 0;
+	border-radius: 5px 0.3em 0 0;
 	overflow: hidden;
 	position: relative;
 	pointer-events: none;

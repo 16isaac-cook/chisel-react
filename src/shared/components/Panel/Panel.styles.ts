@@ -22,7 +22,7 @@ export const StyledPanel = styled.div<PanelProps>`
 	background-color: ${(props) => props.theme.dark200};
 	padding: 0.3em;
 	border: 0;
-	border-radius: 0.3em;
+	border-radius: 5px;
 	margin-top: ${(props) => (props.$top ? `0.3em` : null)};
 	margin-right: ${(props) => (props.$right ? `0.3em` : null)};
 	margin-bottom: ${(props) => (props.$bottom ? `0.3em` : null)};

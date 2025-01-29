@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { useCallback, useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router";
 
 import Page from "src/shared/components/Page/Page";
 import Container from "src/shared/components/Container/Container";
@@ -12,19 +12,15 @@ import Label from "src/shared/components/Label/Label";
 
 import { useTauriContext } from "src/shared/context/tauri-context";
 import { worldThemes } from "./constants/worldThemes";
+import { builderObjects } from "./constants/builderObjects";
+import { World, WorldData, JsonFile } from "./types/quill.types";
 import WorldList from "./components/worlds/WorldList/WorldList";
-
-const json = {
-	test1: "test",
-	test2: "test",
-	test3: "test",
-};
+import Folder from "./components/builder/Folder/Folder";
+import ObjectPicker from "./components/builder/ObjectPicker/ObjectPicker";
 
 const Quill: React.FC = () => {
 	const navigate = useNavigate();
-
-	const [currentPage, setCurrentPage] = useState("home");
-	const [currentWorld, setCurrentWorld] = useState();
+	const location = useLocation();
 
 	return (
 		<Page title="Quill" back="/gm-tools">
@@ -45,9 +41,8 @@ const Quill: React.FC = () => {
 							icon="home"
 							style={{ width: "100%" }}
 							bottom={true}
-							active={currentPage === "home"}
+							active={location.pathname === "/quill"}
 							onClick={() => {
-								setCurrentPage("home");
 								navigate("/quill");
 							}}
 						>
@@ -57,9 +52,8 @@ const Quill: React.FC = () => {
 							variant="big"
 							icon="globe"
 							style={{ width: "100%" }}
-							active={currentPage === "worlds"}
+							active={location.pathname.includes("worlds")}
 							onClick={() => {
-								setCurrentPage("worlds");
 								navigate("/quill/worlds");
 							}}
 						>
@@ -83,7 +77,15 @@ const Quill: React.FC = () => {
 							}}
 							padding={false}
 							justify="flex-start"
-						></Container>
+						>
+							<Button
+								onClick={() =>
+									navigate("/quill/builder/testWorld")
+								}
+							>
+								Test
+							</Button>
+						</Container>
 					</Panel>
 					<Panel style={{ flex: "0 1 0", padding: "0.6em" }}>
 						<Button
@@ -91,9 +93,8 @@ const Quill: React.FC = () => {
 							icon="settings"
 							style={{ width: "100%" }}
 							bottom={true}
-							active={currentPage === "settings"}
+							active={location.pathname.includes("settings")}
 							onClick={() => {
-								setCurrentPage("settings");
 								navigate("/quill/settings");
 							}}
 						>
@@ -103,9 +104,8 @@ const Quill: React.FC = () => {
 							variant="big"
 							icon="help"
 							style={{ width: "100%" }}
-							active={currentPage === "help"}
+							active={location.pathname.includes("help")}
 							onClick={() => {
-								setCurrentPage("help");
 								navigate("/quill/help");
 							}}
 						>
@@ -141,18 +141,11 @@ export const QuillHome: React.FC = () => {
 };
 
 export const QuillWorlds: React.FC = () => {
-	const ctx = useTauriContext();
+	const tauri = useTauriContext();
 
 	const [popupOpen, setPopupOpen] = useState(false);
 
-	type WorldType = {
-		worldId: string;
-		name: string;
-		theme: keyof typeof worldThemes;
-		author: string;
-		dateCreated: string;
-	};
-	const [worlds, setWorlds] = useState<WorldType[]>([]);
+	const [worlds, setWorlds] = useState<World[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	const togglePopup = () => {
@@ -163,18 +156,18 @@ export const QuillWorlds: React.FC = () => {
 		console.log(worldName);
 	};
 
-	const loadWorlds = async () => {
+	const loadWorlds = useCallback(async () => {
 		setLoading(true);
-		const worldList = await ctx.readDirectory("quill/worlds");
+		const worldList = await tauri.readDirectory("quill/worlds");
 		if (worldList) {
 			for (const world of worldList) {
-				const worldInfo = await ctx.loadFile(
+				const worldInfo = await tauri.loadFile(
 					"quill/worlds/" + world.name,
 					"worldinfo.json",
 					false
 				);
 				if (typeof worldInfo === "string") {
-					const parsed: WorldType = JSON.parse(worldInfo);
+					const parsed: World = JSON.parse(worldInfo);
 
 					setWorlds((oldSet) => {
 						if (
@@ -192,11 +185,12 @@ export const QuillWorlds: React.FC = () => {
 		}
 		console.log(worlds);
 		setLoading(false);
-	};
+	}, [tauri, worlds]);
 
+	const stringified = JSON.stringify([...worlds]);
 	useEffect(() => {
 		loadWorlds();
-	}, [JSON.stringify([...worlds])]);
+	}, [stringified, loadWorlds]);
 
 	if (loading) {
 		return (
@@ -235,6 +229,185 @@ export const QuillWorlds: React.FC = () => {
 			{popupOpen ? (
 				<CreateWorldPopup close={togglePopup} reload={loadWorlds} />
 			) : null}
+		</Container>
+	);
+};
+
+export const QuillBuilder: React.FC = () => {
+	const { worldId } = useParams<{ worldId: string }>();
+
+	const tauri = useTauriContext();
+	const path = "quill/worlds/" + worldId;
+
+	const [loading, setLoading] = useState(true);
+
+	const initialValues = () => {
+		const dataObj = Object.keys(builderObjects).reduce((acc, key) => {
+			(acc as any)[key] = [];
+			return acc;
+		}, {} as WorldData);
+		return dataObj;
+	};
+
+	const getWorldInfo = useCallback(async () => {
+		const info = await tauri.loadFile(
+			"quill/worlds/" + worldId,
+			"worldinfo.json",
+			false
+		);
+		if (typeof info === "string") {
+			const parsed: World = JSON.parse(info);
+			return parsed;
+		}
+		throw new Error("Expected a world, but got something else");
+	}, [tauri, worldId]);
+
+	const [data, setData] = useState<WorldData>(initialValues());
+	const [worldInfo, setWorldInfo] = useState<World>();
+
+	const loadData = useCallback(async () => {
+		setLoading(true);
+		try {
+			//set the world info real quick
+			const info = await getWorldInfo();
+			setWorldInfo(info);
+
+			//pull folders for each object (building, celestialBody, etc...)
+			const objList = await tauri.readDirectory(path);
+			if (objList) {
+				//go through each item
+				for (const obj of objList) {
+					//make sure we're only checking the object folders
+					if (Object.keys(builderObjects).includes(obj.name)) {
+						//read this folder
+						const folder = await tauri.readDirectory(
+							`${path}/${obj.name}`
+						);
+						//check if the folder is there and it has items inside
+						if (folder && folder.length > 0) {
+							for (const folderObj of folder) {
+								//make sure we've got a json file
+								const isJsonFile = (
+									fileName: string
+								): fileName is JsonFile<string> => {
+									return /\.json$/.test(fileName);
+								};
+								if (isJsonFile(folderObj.name)) {
+									//set the world data
+									setData((prevData) => ({
+										...prevData,
+										[obj.name]: Array.from(
+											new Set([
+												...(prevData[obj.name] || []),
+												folderObj.name,
+											])
+										) as JsonFile<string>,
+									}));
+								}
+							}
+						}
+					}
+				}
+			}
+		} catch (error) {
+			console.log(error);
+		}
+
+		setLoading(false);
+	}, [path, getWorldInfo, tauri]);
+
+	useEffect(() => {
+		loadData();
+	}, [loadData]);
+
+	useEffect(() => {
+		console.log(data);
+	}, [data]);
+
+	if (loading) {
+		return (
+			<Container style={{ width: "100%" }} padding={false}>
+				<SmallTitle>
+					Builder - {worldInfo ? worldInfo.name : "ERROR"}
+				</SmallTitle>
+				<Container
+					style={{ width: "100%" }}
+					column={false}
+					padding={false}
+				>
+					<Panel
+						title="World Objects"
+						right={true}
+						style={{ height: "100%", width: "25%" }}
+					></Panel>
+					<Panel
+						title="Builder"
+						style={{
+							height: "100%",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<Label>Loading world data...</Label>
+					</Panel>
+				</Container>
+			</Container>
+		);
+	}
+
+	return (
+		<Container style={{ width: "100%" }} padding={false}>
+			<SmallTitle>
+				Builder - {worldInfo ? worldInfo.name : "ERROR"}
+			</SmallTitle>
+			<Container style={{ width: "100%" }} column={false} padding={false}>
+				<Panel
+					title="World Objects"
+					right={true}
+					style={{
+						height: "100%",
+						width: "25%",
+						maxWidth: "25%",
+					}}
+				>
+					<Container
+						style={{
+							width: "100%",
+							flex: "1 0 0",
+							overflowY: "auto",
+							justifyContent: "flex-start",
+						}}
+					>
+						{data && worldInfo
+							? Object.entries(builderObjects).map(
+									([obj, value]) => {
+										const items = data[obj];
+										if (items.length > 0) {
+											return (
+												<Folder
+													folderId={obj}
+													worldId={worldInfo.worldId}
+													icon={value.icon}
+													itemList={items}
+													key={obj}
+												>
+													{value.plural
+														? value.plural
+														: value.name + "s"}
+												</Folder>
+											);
+										} else {
+											return null;
+										}
+									}
+							  )
+							: null}
+					</Container>
+				</Panel>
+				<Panel title="Builder" style={{ height: "100%" }}>
+					<ObjectPicker />
+				</Panel>
+			</Container>
 		</Container>
 	);
 };

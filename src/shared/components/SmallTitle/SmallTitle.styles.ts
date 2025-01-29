@@ -11,7 +11,7 @@ export const StyledTitle = styled.div<Props>`
 	background-color: ${(props) => props.theme.dark200};
 	padding: 0.3em;
 	border: 0;
-	border-radius: 0.3em;
+	border-radius: 5px;
 	text-align: center;
 	width: 100%;
 	margin-bottom: 0.3em;

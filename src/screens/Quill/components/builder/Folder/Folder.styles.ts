@@ -4,17 +4,17 @@ import { clickable, fontSizes, font } from "src/shared/util/styles";
 
 interface Props {
 	fontSize: number | keyof typeof fontSizes;
-	$margin?: boolean;
 }
 
 export const FolderContainer = styled.div<Props>`
+	flex: 0 1 0;
 	position: relative;
-	margin: ${(props) => (props.$margin ? `0.3em` : `0`)};
+	margin: 0 0 0.3em 0;
 	font-size: ${(props) =>
 		props.fontSize === 0 ? `inherit` : `${font.size(props.fontSize)}`};
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
 `;
@@ -26,10 +26,11 @@ export const FolderLabel = styled.div<{ $isOpen: boolean }>`
 	background-color: ${(props) =>
 		props.$isOpen ? props.theme.primary300 : props.theme.dark300};
 	display: flex;
-	flex: 1;
+	flex: 0 1 0;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	text-wrap: nowrap;
 	${clickable.basic}
 	&:not(:disabled) {
 		&:hover {
@@ -56,20 +57,22 @@ export const DropdownArrow = styled.div<{ $isOpen: boolean }>`
 	border-right: 5px solid transparent;
 	border-top: 5px solid ${(props) => props.theme.font};
 	transition: transform 0.2s ease;
-	${({ $isOpen }) => ($isOpen ? `transform: rotate(180deg)` : null)}
+	${({ $isOpen }) => ($isOpen ? `transform: rotate(180deg);` : null)}
 `;
 
 export const Dropdown = styled.ul<{ $isOpen: boolean }>`
 	width: 100%;
 	max-height: 300px;
 	overflow-y: auto;
+	overflow-x: hidden;
 	margin-top: 0.3em;
 	padding: 0em 0.9em 0em 0.3em;
 	list-style: none;
 	border: 0;
 	border-radius: 5px;
 	background-color: transparent;
-	display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
+	transition: max-height 0.2s ease;
+	display: ${({ $isOpen }) => ($isOpen ? `block;` : `none`)};
 `;
 
 export const Item = styled.li`

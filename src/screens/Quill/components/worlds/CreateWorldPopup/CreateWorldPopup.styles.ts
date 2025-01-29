@@ -11,6 +11,6 @@ export const StyledPopup = styled.form<Props>`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border-radius: 0.3em;
+	border-radius: 5px;
 	background-color: ${(props) => props.theme.dark200};
 `;

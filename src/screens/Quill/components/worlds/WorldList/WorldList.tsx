@@ -14,10 +14,10 @@ type WorldProps = {
 
 type Props = {
 	worlds: WorldProps[];
-	switchToWorld: (worldName: string) => void;
+	setWorldId: (worldName: string) => void;
 };
 
-const WorldList: React.FC<Props> = ({ worlds, switchToWorld }) => {
+const WorldList: React.FC<Props> = ({ worlds, setWorldId }) => {
 	return (
 		<StyledWorldList>
 			{worlds.map((world, index) => {
@@ -27,7 +27,7 @@ const WorldList: React.FC<Props> = ({ worlds, switchToWorld }) => {
 						label={world.label}
 						image={world.image}
 						key={index}
-						onClick={() => switchToWorld(world.worldId)}
+						onClick={() => setWorldId(world.worldId)}
 					/>
 				);
 			})}

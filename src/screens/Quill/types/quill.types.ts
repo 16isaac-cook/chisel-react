@@ -3,7 +3,7 @@ import { worldThemes } from "src/screens/Quill/constants/worldThemes";
 
 export type JsonFile<T extends string> = T extends `${string}.json` ? T : never;
 
-export type WorldData = {
+export type WorldObjects = {
 	[K in keyof typeof builderObjects]: JsonFile<string>[];
 };
 
@@ -13,6 +13,7 @@ export type World = {
 	theme: keyof typeof worldThemes;
 	author: string;
 	dateCreated: string;
+	lastEdited: string;
 };
 
 export type WorldObject = {

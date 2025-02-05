@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router";
 
 import { font } from "src/shared/util/styles";
 
@@ -7,6 +8,9 @@ import { builderObjects } from "src/screens/Quill/constants/builderObjects";
 import Button from "src/shared/components/Button/Button";
 
 const ObjectPicker: React.FC = () => {
+    const navigate = useNavigate();
+    const { worldId } = useParams<{ worldId: string }>();
+
     return (
         <PickerContainer>
             <PickerButtonContainer>
@@ -18,6 +22,7 @@ const ObjectPicker: React.FC = () => {
                             fontSize={font.size("huge")}
                             iconSize={font.size("giant")}
                             key={obj}
+                            onClick={() => navigate(`${obj}`)}
                         >
                             {value.name}
                         </Button>

@@ -1,25 +1,16 @@
 import styled from "styled-components";
 
+import { font, fontSizes } from "src/shared/util/styles";
+
 interface Props {
     className?: string;
-    size?: number | string;
+    size: number | keyof typeof fontSizes;
     $right?: boolean;
 }
 
 export const StyledIcon = styled.i<Props>`
-    font-size: ${(props) => {
-        if (typeof props.size === "string") {
-            return props.size;
-        } else if (typeof props.size === "number") {
-            if (props.size === 0) {
-                return "inherit";
-            } else {
-                return `${props.size}px`;
-            }
-        } else {
-            return "inherit";
-        }
-    }};
+    font-size: ${(props) =>
+        props.size === 0 ? "inherit" : font.size(props.size)};
     color: ${(props) => `${props.color};`};
     ${(props) => (props.$right ? `margin-right: 0.3em;` : "")}
 `;

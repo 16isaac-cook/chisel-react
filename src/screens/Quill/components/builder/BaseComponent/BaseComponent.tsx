@@ -9,6 +9,9 @@ import { builderObjects } from "src/screens/Quill/constants/builderObjects";
 import { WorldObject } from "src/screens/Quill/types/quill.types";
 
 import Container from "src/shared/components/Container/Container";
+import Label from "src/shared/components/Label/Label";
+import Input from "src/shared/components/Input/Input";
+import Button from "src/shared/components/Button/Button";
 
 const BuilderBaseComponent: React.FC = () => {
     const { worldId, type } = useParams<{ worldId: string; type: string }>();
@@ -68,7 +71,36 @@ const BuilderBaseComponent: React.FC = () => {
             padding={false}
             onSubmit={handleSubmit(onSubmit)}
         >
-            {worldId} {type}
+            <Container padding={false} style={{ width: "100%" }}>
+                <Container
+                    padding={false}
+                    column={false}
+                    fontSize="huge"
+                    style={{ width: "100%" }}
+                >
+                    <Controller
+                        name="name"
+                        control={control}
+                        rules={{ required: "A name is required." }}
+                        render={({ field }) => (
+                            <Input
+                                {...field}
+                                value={field.value[0]}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) =>
+                                    field.onChange([
+                                        e.target.value,
+                                        field.value[1],
+                                    ])
+                                }
+                            />
+                        )}
+                    />
+                    <Button>Save</Button>
+                </Container>
+                <Label style={{ backgroundColor: "red" }}>test</Label>
+            </Container>
         </Container>
     );
 };

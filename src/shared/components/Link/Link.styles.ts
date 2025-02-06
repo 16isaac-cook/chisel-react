@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { clickable } from "../../util/styles";
+import { clickable, font, fontSizes } from "../../util/styles";
 
 interface Props {
-    fontSize?: number | string;
+    fontSize: number | keyof typeof fontSizes;
 }
 
 export const StyledLink = styled.button<Props>`
@@ -15,19 +15,8 @@ export const StyledLink = styled.button<Props>`
     border: 0;
     padding: 0;
     ${clickable.link};
-    font-size: ${(props) => {
-        if (typeof props.fontSize === "string") {
-            return props.fontSize;
-        } else if (typeof props.fontSize === "number") {
-            if (props.fontSize === 0) {
-                return "inherit";
-            } else {
-                return `${props.fontSize}px`;
-            }
-        } else {
-            return "inherit";
-        }
-    }};
+    font-size: ${(props) =>
+        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
     &:disabled {
         opacity: 0.6;
         cursor: default;

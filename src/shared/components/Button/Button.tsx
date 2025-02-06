@@ -1,5 +1,7 @@
 import { forwardRef, ReactNode, CSSProperties } from "react";
 
+import { fontSizes } from "src/shared/util/styles";
+
 import Icon, { IconName } from "../Icon/Icon";
 
 import {
@@ -10,7 +12,7 @@ import {
 
 type Props = {
     children?: ReactNode;
-    fontSize?: number | string;
+    fontSize?: number | keyof typeof fontSizes;
     color?: string;
     icon?: IconName;
     iconSize?: number;

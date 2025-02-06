@@ -1,12 +1,14 @@
 import { forwardRef, ReactNode } from "react";
 
+import { fontSizes } from "src/shared/util/styles";
+
 import Icon, { IconName } from "../Icon/Icon";
 
 import { StyledLink } from "./Link.styles";
 
 type Props = {
     children?: ReactNode;
-    fontSize?: number | string;
+    fontSize?: number | keyof typeof fontSizes;
     icon?: IconName;
     iconSize?: number;
     disabled?: boolean;
@@ -18,7 +20,7 @@ const Link = forwardRef<HTMLButtonElement, Props>(
     (
         {
             children,
-            fontSize,
+            fontSize = 0,
             icon,
             iconSize = 0,
             disabled,

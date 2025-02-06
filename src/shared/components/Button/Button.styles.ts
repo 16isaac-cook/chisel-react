@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 
-import { font, clickable } from "../../util/styles";
+import { font, clickable, fontSizes } from "../../util/styles";
 
 export type ButtonVariants = keyof typeof variants | null;
 
 interface ButtonProps {
-    fontSize?: number | string;
+    fontSize: number | keyof typeof fontSizes;
     color?: string;
     $variant?: ButtonVariants;
     $top?: boolean;
@@ -30,19 +30,8 @@ export const StyledButton = styled.button<ButtonProps>`
     ${clickable.basic};
     border-radius: 5px;
     text-align: center;
-    font-size: ${(props) => {
-        if (typeof props.fontSize === "string") {
-            return props.fontSize;
-        } else if (typeof props.fontSize === "number") {
-            if (props.fontSize === 0) {
-                return "inherit";
-            } else {
-                return `${props.fontSize}px`;
-            }
-        } else {
-            return "inherit";
-        }
-    }};
+    font-size: ${(props) =>
+        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
     color: ${(props) => (props.color ? props.color : props.theme.font)};
     ${(props) =>
         props.$active
@@ -84,19 +73,8 @@ export const StyledSubmitButton = styled.input<ButtonProps>`
     ${clickable.basic};
     border-radius: 5px;
     text-align: center;
-    font-size: ${(props) => {
-        if (typeof props.fontSize === "string") {
-            return props.fontSize;
-        } else if (typeof props.fontSize === "number") {
-            if (props.fontSize === 0) {
-                return "inherit";
-            } else {
-                return `${props.fontSize}px`;
-            }
-        } else {
-            return "inherit";
-        }
-    }};
+    font-size: ${(props) =>
+        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
     color: ${(props) => (props.color ? props.color : props.theme.font)};
     ${(props) =>
         props.$active

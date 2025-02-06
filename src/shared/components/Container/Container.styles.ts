@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
+import { font, fontSizes } from "src/shared/util/styles";
+
 interface Props {
     $column: boolean;
     $justify: string;
     $align: string;
     $padding: boolean;
     $background: boolean;
+    fontSize: keyof typeof fontSizes | number;
 }
 
 export const StyledContainer = styled.div<Props>`
@@ -17,4 +20,6 @@ export const StyledContainer = styled.div<Props>`
     background-color: ${(props) =>
         props.$background ? props.theme.dark100 : "transparent"};
     flex: 1 1 auto;
+    font-size: ${(props) =>
+        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
 `;

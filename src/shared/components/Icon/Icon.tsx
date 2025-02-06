@@ -1,3 +1,4 @@
+import { fontSizes } from "src/shared/util/styles";
 import { StyledIcon } from "./Icon.styles";
 
 const iconCodes = {
@@ -35,12 +36,12 @@ const iconCodes = {
     //other
     home: "home-2-fill",
     globe: "globe-fill",
-    overview: "book-2-fill",
-    worldObjects: "haze-fill",
-    maps: "map-fill",
-    history: "hourglass-fill",
-    campaigns: "team-fill",
-    writingTools: "pen-nib-fill",
+    book: "book-2-fill",
+    world: "haze-fill",
+    map: "map-fill",
+    hourglass: "hourglass-fill",
+    team: "team-fill",
+    pen: "pen-nib-fill",
     files: "folder-3-fill",
     settings: "settings-5-fill",
     help: "question-fill",
@@ -62,14 +63,14 @@ export type IconName = keyof typeof iconCodes;
 interface IconProps {
     icon?: IconName;
     right?: boolean;
-    size?: number | string;
+    size?: number | keyof typeof fontSizes;
     [key: string]: any;
 }
 
 const Icon: React.FC<IconProps> = ({
     icon = "home",
     right,
-    size,
+    size = 0,
     ...iconProps
 }) => {
     return (

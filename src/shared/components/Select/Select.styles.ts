@@ -1,28 +1,17 @@
 import styled from "styled-components";
 
-import { clickable } from "src/shared/util/styles";
+import { clickable, font, fontSizes } from "src/shared/util/styles";
 
 interface Props {
-    fontSize?: number | string;
+    fontSize: number | keyof typeof fontSizes;
     $margin?: boolean;
 }
 
 export const SelectContainer = styled.div<Props>`
     position: relative;
     margin: ${(props) => (props.$margin ? `3px` : `0`)};
-    font-size: ${(props) => {
-        if (typeof props.fontSize === "string") {
-            return props.fontSize;
-        } else if (typeof props.fontSize === "number") {
-            if (props.fontSize === 0) {
-                return "inherit";
-            } else {
-                return `${props.fontSize}px`;
-            }
-        } else {
-            return "inherit";
-        }
-    }};
+    font-size: ${(props) =>
+        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
 `;
 
 export const SelectedValue = styled.div`

@@ -2,6 +2,8 @@ import React, { ReactNode, CSSProperties } from "react";
 
 import { StyledContainer } from "./Container.styles";
 
+import { fontSizes } from "src/shared/util/styles";
+
 interface Props {
     column?: boolean;
     justify?: string;
@@ -10,6 +12,7 @@ interface Props {
     background?: boolean;
     children?: ReactNode;
     style?: CSSProperties;
+    fontSize?: keyof typeof fontSizes | number;
     [key: string]: any;
 }
 
@@ -21,6 +24,7 @@ const Container: React.FC<Props> = ({
     background = false,
     children = null,
     style = undefined,
+    fontSize = 0,
     ...containerProps
 }) => {
     return (
@@ -30,6 +34,7 @@ const Container: React.FC<Props> = ({
             $align={align}
             $padding={padding}
             $background={background}
+            fontSize={fontSize}
             style={style}
             {...containerProps}
         >

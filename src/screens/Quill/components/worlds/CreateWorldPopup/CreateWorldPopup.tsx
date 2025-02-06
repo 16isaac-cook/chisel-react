@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { message } from "@tauri-apps/plugin-dialog";
 
-import { font } from "src/shared/util/styles";
 import { useTauriContext } from "src/shared/context/tauri-context";
 import { formatString, getDate } from "src/shared/util/functions";
 import { builderObjects } from "../../../constants/builderObjects";
@@ -100,10 +99,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
         >
             {creating ? (
                 <Panel style={{ flex: "0 1 0", whiteSpace: "nowrap" }}>
-                    <Label
-                        fontSize={font.size("huge")}
-                        style={{ padding: "0.3em" }}
-                    >
+                    <Label fontSize={"huge"} style={{ padding: "0.3em" }}>
                         Creating world...
                     </Label>
                 </Panel>
@@ -112,10 +108,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                     onSubmit={handleSubmit(onSubmit)}
                     onMouseDown={(e) => e.stopPropagation()}
                 >
-                    <Label
-                        fontSize={font.size("huge")}
-                        style={{ marginBottom: "0.3em" }}
-                    >
+                    <Label fontSize={"huge"} style={{ marginBottom: "0.3em" }}>
                         Create New World
                     </Label>
 
@@ -126,10 +119,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                         })}
                     />
                     {errors.name && (
-                        <Label
-                            fontSize={font.size("big")}
-                            style={{ color: "red" }}
-                        >
+                        <Label fontSize={"big"} style={{ color: "red" }}>
                             {errors.name.message}
                         </Label>
                     )}
@@ -154,10 +144,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                         )}
                     />
                     {errors.theme && (
-                        <Label
-                            fontSize={font.size("big")}
-                            style={{ color: "red" }}
-                        >
+                        <Label fontSize={"big"} style={{ color: "red" }}>
                             {errors.theme.message}
                         </Label>
                     )}

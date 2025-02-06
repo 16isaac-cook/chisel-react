@@ -10,7 +10,7 @@ import {
 
 import Icon, { IconName } from "../Icon/Icon";
 
-import { fontDisplayNames } from "src/shared/util/styles";
+import { fontDisplayNames, fontSizes } from "src/shared/util/styles";
 
 /*
 Farmat like this:
@@ -35,7 +35,7 @@ type Props = {
     options: OptionProps[];
     placeholder?: string;
     margin?: boolean;
-    fontSize?: number | string;
+    fontSize?: number | keyof typeof fontSizes;
     onChange?: (value: string | number) => void;
     value?: string | number;
     error?: string;

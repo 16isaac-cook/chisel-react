@@ -1,11 +1,13 @@
 import React, { ReactNode, CSSProperties } from "react";
 
+import { fontSizes } from "src/shared/util/styles";
+
 import { StyledLabel } from "./Label.styles";
 import Icon, { IconName } from "../Icon/Icon";
 
 interface Props {
     children: ReactNode;
-    fontSize?: number | string;
+    fontSize?: number | keyof typeof fontSizes;
     color?: string;
     icon?: IconName;
     center?: boolean;

@@ -6,7 +6,6 @@ import Panel from "src/shared/components/Panel/Panel";
 import Label from "src/shared/components/Label/Label";
 import Container from "src/shared/components/Container/Container";
 import Button from "src/shared/components/Button/Button";
-import { font } from "src/shared/util/styles";
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
@@ -24,7 +23,7 @@ const Home: React.FC = () => {
                 >
                     placeholder
                 </div>
-                <Label fontSize={font.size("huge")}>
+                <Label fontSize={"huge"}>
                     Welcome to the Chisel TTRPG tool! A one-stop-shop for all
                     things TTRPG.
                 </Label>
@@ -46,8 +45,8 @@ const Home: React.FC = () => {
                     }}
                 >
                     <Button
-                        fontSize={font.size("big")}
-                        iconSize={font.size("giant")}
+                        fontSize={"big"}
+                        iconSize={"giant"}
                         variant="vertical"
                         icon="quill"
                         onClick={() => {
@@ -57,8 +56,8 @@ const Home: React.FC = () => {
                         GM Tools
                     </Button>
                     <Button
-                        fontSize={font.size("big")}
-                        iconSize={font.size("giant")}
+                        fontSize={"big"}
+                        iconSize={"giant"}
                         variant="vertical"
                         icon="team"
                         onClick={() => {
@@ -68,8 +67,8 @@ const Home: React.FC = () => {
                         Player Tools
                     </Button>
                     <Button
-                        fontSize={font.size("big")}
-                        iconSize={font.size("giant")}
+                        fontSize={"big"}
+                        iconSize={"giant"}
                         variant="vertical"
                         icon="book"
                         onClick={() => {
@@ -79,8 +78,8 @@ const Home: React.FC = () => {
                         Manage Content
                     </Button>
                     <Button
-                        fontSize={font.size("big")}
-                        iconSize={font.size("giant")}
+                        fontSize={"big"}
+                        iconSize={"giant"}
                         variant="vertical"
                         icon="info"
                         onClick={() => {

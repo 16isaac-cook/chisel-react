@@ -129,7 +129,7 @@ const QuillLoader: React.FC = () => {
                                 >
                                     <Button
                                         variant="big"
-                                        icon="overview"
+                                        icon="book"
                                         style={{
                                             width: "100%",
                                             marginBottom: "0.3em",
@@ -147,7 +147,7 @@ const QuillLoader: React.FC = () => {
                                     </Button>
                                     <Button
                                         variant="big"
-                                        icon="worldObjects"
+                                        icon="world"
                                         style={{
                                             width: "100%",
                                             marginBottom: "0.3em",
@@ -165,7 +165,7 @@ const QuillLoader: React.FC = () => {
                                     </Button>
                                     <Button
                                         variant="big"
-                                        icon="maps"
+                                        icon="map"
                                         style={{
                                             width: "100%",
                                             marginBottom: "0.3em",
@@ -183,7 +183,7 @@ const QuillLoader: React.FC = () => {
                                     </Button>
                                     <Button
                                         variant="big"
-                                        icon="history"
+                                        icon="hourglass"
                                         style={{
                                             width: "100%",
                                             marginBottom: "0.3em",
@@ -201,7 +201,7 @@ const QuillLoader: React.FC = () => {
                                     </Button>
                                     <Button
                                         variant="big"
-                                        icon="campaigns"
+                                        icon="team"
                                         style={{
                                             width: "100%",
                                             marginBottom: "0.3em",
@@ -219,7 +219,7 @@ const QuillLoader: React.FC = () => {
                                     </Button>
                                     <Button
                                         variant="big"
-                                        icon="writingTools"
+                                        icon="pen"
                                         style={{
                                             width: "100%",
                                             marginBottom: "0.3em",

@@ -1,10 +1,12 @@
 import { forwardRef } from "react";
 
+import { fontSizes } from "src/shared/util/styles";
+
 import { StyledTextBox } from "./TextBox.styles";
 
 interface Props {
     value?: string | number;
-    fontSize?: number | string;
+    fontSize?: number | keyof typeof fontSizes;
     disabled?: boolean;
     filter?: RegExp;
     margin?: boolean;

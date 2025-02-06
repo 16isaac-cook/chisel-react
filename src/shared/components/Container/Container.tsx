@@ -2,44 +2,36 @@ import React, { ReactNode, CSSProperties } from "react";
 
 import { StyledContainer } from "./Container.styles";
 
-import { fontSizes } from "src/shared/util/styles";
+import { CommonStyleProps } from "src/shared/util/styles";
 
-interface Props {
-    column?: boolean;
-    justify?: string;
-    align?: string;
-    padding?: boolean;
-    background?: boolean;
-    wide?: boolean;
-    tall?: boolean;
+interface Props extends CommonStyleProps {
     children?: ReactNode;
     style?: CSSProperties;
-    fontSize?: keyof typeof fontSizes | number;
     [key: string]: any;
 }
 
 const Container: React.FC<Props> = ({
-    column = true,
-    justify = "center",
-    align = "center",
-    padding = true,
-    background = false,
-    wide = false,
-    tall = false,
-    children = null,
-    style = undefined,
-    fontSize = 0,
+    column,
+    justify,
+    align,
+    padding,
+    background,
+    wide,
+    tall,
+    children,
+    style,
+    fontSize,
     ...containerProps
 }) => {
     return (
         <StyledContainer
-            $column={column}
-            $justify={justify}
-            $align={align}
-            $padding={padding}
-            $background={background}
-            $wide={wide}
-            $tall={tall}
+            column={column}
+            justify={justify}
+            align={align}
+            padding={padding}
+            background={background}
+            wide={wide}
+            tall={tall}
             fontSize={fontSize}
             style={style}
             {...containerProps}

@@ -21,7 +21,7 @@ export type WorldObject = {
     dateCreated: string;
     lastEdited: string;
     type: string;
-    name: [string, boolean];
+    name: string;
     description: [string, boolean];
     link: boolean;
     gmNotes: [string, boolean];

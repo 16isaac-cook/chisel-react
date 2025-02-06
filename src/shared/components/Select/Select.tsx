@@ -127,7 +127,7 @@ const Select = forwardRef<HTMLDivElement, Props>(
                 >
                     <div>
                         {selectedOption?.icon && (
-                            <Icon icon={selectedOption.icon} right={true} />
+                            <Icon icon={selectedOption.icon} right />
                         )}
                         {selectedOption ? selectedOption.label : placeholder}
                     </div>
@@ -149,7 +149,7 @@ const Select = forwardRef<HTMLDivElement, Props>(
                                 style={{ fontFamily }}
                             >
                                 {option.icon ? (
-                                    <Icon icon={option.icon} right={true} />
+                                    <Icon icon={option.icon} right />
                                 ) : null}
                                 {option.label}
                             </Option>

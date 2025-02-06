@@ -1,15 +1,12 @@
 import React, { ReactNode, CSSProperties } from "react";
 
-import { fontSizes } from "src/shared/util/styles";
+import { CommonStylePropsIcon } from "src/shared/util/styles";
 
 import { StyledLabel } from "./Label.styles";
 import Icon, { IconName } from "../Icon/Icon";
 
-interface Props {
+interface Props extends CommonStylePropsIcon {
     children: ReactNode;
-    fontSize?: number | keyof typeof fontSizes;
-    color?: string;
-    icon?: IconName;
     center?: boolean;
     style?: CSSProperties;
     [key: string]: any;

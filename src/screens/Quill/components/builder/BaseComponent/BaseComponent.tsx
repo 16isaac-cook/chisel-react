@@ -25,7 +25,7 @@ const BuilderBaseComponent: React.FC = () => {
         defaultValues: {
             id: "",
             type: "",
-            name: ["", true],
+            name: "",
             description: ["", true],
             link: true,
             gmNotes: ["", false],
@@ -65,39 +65,21 @@ const BuilderBaseComponent: React.FC = () => {
 
     return (
         <Container
-            column={true}
-            justify="center"
-            style={{ flex: "1 1 auto" }}
-            padding={false}
+            column
+            justify="flex-start"
+            wide
+            flex="1 1 auto"
             onSubmit={handleSubmit(onSubmit)}
         >
-            <Container padding={false} style={{ width: "100%" }}>
-                <Container
-                    padding={false}
-                    column={false}
-                    fontSize="huge"
-                    style={{ width: "100%" }}
-                >
-                    <Controller
-                        name="name"
-                        control={control}
-                        rules={{ required: "A name is required." }}
-                        render={({ field }) => (
-                            <Input
-                                {...field}
-                                value={field.value[0]}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>
-                                ) =>
-                                    field.onChange([
-                                        e.target.value,
-                                        field.value[1],
-                                    ])
-                                }
-                            />
-                        )}
+            <Container wide column>
+                <Container fontSize="huge" wide>
+                    <Input
+                        style={{ flex: "1 1 auto" }}
+                        {...register("name", {
+                            required: "A name is required.",
+                        })}
                     />
-                    <Button>Save</Button>
+                    <Button flex="0 0 auto">Save Object</Button>
                 </Container>
                 <Label style={{ backgroundColor: "red" }}>test</Label>
             </Container>
@@ -106,3 +88,24 @@ const BuilderBaseComponent: React.FC = () => {
 };
 
 export default BuilderBaseComponent;
+
+/*
+<Controller
+                        name="name"
+                        control={control}
+                        rules={{ required: "A name is required." }}
+                        render={({ field }) => (
+                            <Input
+                                {...field}
+                                value={field.value[0]}
+                                onChange={
+                                    (e: React.ChangeEvent<HTMLInputElement>) =>
+                                        field.onChange([
+                                            e.target.value,
+                                            field.value[1],
+                                        ]) // set value to [string, boolean]
+                                }
+                            />
+                        )}
+                    />
+                    */

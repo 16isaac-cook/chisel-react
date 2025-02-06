@@ -1,8 +1,8 @@
 import { forwardRef, ReactNode, CSSProperties } from "react";
 
-import { fontSizes } from "src/shared/util/styles";
+import { CommonStylePropsIcon } from "src/shared/util/styles";
 
-import Icon, { IconName } from "../Icon/Icon";
+import Icon from "../Icon/Icon";
 
 import {
     StyledButton,
@@ -10,39 +10,27 @@ import {
     ButtonVariants,
 } from "./Button.styles";
 
-type Props = {
+interface Props extends CommonStylePropsIcon {
     children?: ReactNode;
-    fontSize?: number | keyof typeof fontSizes;
-    color?: string;
-    icon?: IconName;
-    iconSize?: number;
     variant?: ButtonVariants;
     disabled?: boolean;
-    top?: boolean;
-    right?: boolean;
-    bottom?: boolean;
-    left?: boolean;
     active?: boolean;
     submit?: boolean;
-    onClick?: () => void;
     style?: CSSProperties;
+    onClick?: () => void;
     [key: string]: any;
-};
+}
 
 const Button = forwardRef<HTMLButtonElement, Props>(
     (
         {
-            children = undefined,
-            fontSize = 0,
+            children,
+            fontSize,
             color,
-            icon = undefined,
-            iconSize = 0,
+            icon,
+            iconSize,
             variant = "none",
             disabled = false,
-            top = false,
-            right = false,
-            bottom = false,
-            left = false,
             active = false,
             submit = false,
             onClick = () => {},
@@ -64,11 +52,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
                     onClick={handleClick}
                     fontSize={fontSize}
                     color={color}
-                    $variant={variant}
-                    $top={top}
-                    $right={right}
-                    $bottom={bottom}
-                    $left={left}
+                    variant={variant}
                     $active={active}
                     disabled={disabled}
                     style={style}
@@ -84,11 +68,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
                 onClick={handleClick}
                 fontSize={fontSize}
                 color={color}
-                $variant={variant}
-                $top={top}
-                $right={right}
-                $bottom={bottom}
-                $left={left}
+                variant={variant}
                 $active={active}
                 disabled={disabled}
                 style={style}
@@ -97,9 +77,9 @@ const Button = forwardRef<HTMLButtonElement, Props>(
                 {icon && typeof icon === "string" ? (
                     <Icon
                         icon={icon}
-                        size={iconSize}
+                        fontSize={iconSize}
                         color={color}
-                        right={variant === "vertical" ? false : true}
+                        right={!(variant === "vertical")}
                     />
                 ) : (
                     icon

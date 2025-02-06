@@ -1,17 +1,16 @@
 import styled, { css } from "styled-components";
 
-import { font, clickable, fontSizes } from "../../util/styles";
+import {
+    font,
+    clickable,
+    CommonStyleProps,
+    commonStyles,
+} from "../../util/styles";
 
 export type ButtonVariants = keyof typeof variants | null;
 
-interface ButtonProps {
-    fontSize: number | keyof typeof fontSizes;
-    color?: string;
-    $variant?: ButtonVariants;
-    $top?: boolean;
-    $right?: boolean;
-    $bottom?: boolean;
-    $left?: boolean;
+interface ButtonProps extends CommonStyleProps {
+    variant?: ButtonVariants;
     $active?: boolean;
 }
 
@@ -23,16 +22,11 @@ export const StyledButton = styled.button<ButtonProps>`
     align-items: center;
     border: 0;
     padding: 0.3em;
-    margin-top: ${(props) => (props.$top ? `0.3em` : null)};
-    margin-right: ${(props) => (props.$right ? `0.3em` : null)};
-    margin-bottom: ${(props) => (props.$bottom ? `0.3em` : null)};
-    margin-left: ${(props) => (props.$left ? `0.3em` : null)};
     ${clickable.basic};
     border-radius: 5px;
     text-align: center;
-    font-size: ${(props) =>
-        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
     color: ${(props) => (props.color ? props.color : props.theme.font)};
+    ${commonStyles}
     ${(props) =>
         props.$active
             ? `background-color: ${props.theme.primary300}`
@@ -51,11 +45,7 @@ export const StyledButton = styled.button<ButtonProps>`
                     : `background-color: ${props.theme.primary300}`}
         }
     }
-    ${(props) => props.$variant && variants[props.$variant]}
-    &:disabled {
-        opacity: 0.6;
-        cursor: default;
-    }
+    ${(props) => props.variant && variants[props.variant]}
 `;
 
 export const StyledSubmitButton = styled.input<ButtonProps>`
@@ -66,16 +56,11 @@ export const StyledSubmitButton = styled.input<ButtonProps>`
     align-items: center;
     border: 0;
     padding: 0.3em;
-    margin-top: ${(props) => (props.$top ? `0.3em` : null)};
-    margin-right: ${(props) => (props.$right ? `0.3em` : null)};
-    margin-bottom: ${(props) => (props.$bottom ? `0.3em` : null)};
-    margin-left: ${(props) => (props.$left ? `0.3em` : null)};
     ${clickable.basic};
     border-radius: 5px;
     text-align: center;
-    font-size: ${(props) =>
-        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
     color: ${(props) => (props.color ? props.color : props.theme.font)};
+    ${commonStyles}
     ${(props) =>
         props.$active
             ? `background-color: ${props.theme.primary300}`
@@ -94,11 +79,7 @@ export const StyledSubmitButton = styled.input<ButtonProps>`
                     : `background-color: ${props.theme.primary200}`}
         }
     }
-    ${(props) => props.$variant && variants[props.$variant]}
-    &:disabled {
-        opacity: 0.6;
-        cursor: default;
-    }
+    ${(props) => props.variant && variants[props.variant]}
 `;
 
 const variants = {

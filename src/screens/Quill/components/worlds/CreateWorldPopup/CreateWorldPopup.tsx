@@ -153,7 +153,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                     <Input {...register("author")}></Input>
 
                     <Button
-                        style={{ marginTop: "0.3em" }}
+                        margin={["0.3em", 0, 0, 0]}
                         variant="primary"
                         submit={true}
                     >

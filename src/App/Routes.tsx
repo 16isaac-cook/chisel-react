@@ -22,6 +22,7 @@ import PlayerTools from "src/screens/PlayerTools/PlayerTools";
 import Scroll from "src/screens/Scroll/Scroll";
 import ManageContent from "src/screens/ManageContent/ManageContent";
 import HelpAndInfo from "src/screens/HelpAndInfo/HelpAndInfo";
+import ObjectPicker from "src/screens/Quill/components/builder/ObjectPicker/ObjectPicker";
 
 const router = createHashRouter([
     {
@@ -51,10 +52,16 @@ const router = createHashRouter([
             {
                 path: "builder/:worldId/world-objects",
                 element: <QuillBuilderWorldObjects />,
-            },
-            {
-                path: "builder/:worldId/world-objects/:type",
-                element: <QuillBuilderWorldObjectCreator />,
+                children: [
+                    {
+                        index: true,
+                        element: <ObjectPicker />,
+                    },
+                    {
+                        path: ":type",
+                        element: <QuillBuilderWorldObjectCreator />,
+                    },
+                ],
             },
             {
                 path: "builder/:worldId/maps",
@@ -77,11 +84,11 @@ const router = createHashRouter([
                 element: <QuillBuilderFiles />,
             },
             {
-                path: "builder/:worldId/settings",
+                path: "settings",
                 element: <QuillSettings />,
             },
             {
-                path: "builder/:worldId/help",
+                path: "help",
                 element: <QuillHelp />,
             },
         ],

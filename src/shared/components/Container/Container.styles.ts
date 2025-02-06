@@ -1,29 +1,9 @@
 import styled from "styled-components";
 
-import { font, fontSizes } from "src/shared/util/styles";
+import { commonStyles, CommonStyleProps } from "src/shared/util/styles";
 
-interface Props {
-    $column: boolean;
-    $justify: string;
-    $align: string;
-    $padding: boolean;
-    $background: boolean;
-    $wide: boolean;
-    $tall: boolean;
-    fontSize: keyof typeof fontSizes | number;
-}
-
-export const StyledContainer = styled.div<Props>`
+export const StyledContainer = styled.div<CommonStyleProps>`
     display: flex;
-    flex-direction: ${(props) => (props.$column ? "column" : "row")};
-    justify-content: ${(props) => props.$justify};
-    align-items: ${(props) => props.$align};
-    padding: ${(props) => (props.$padding ? "0.3em" : null)};
-    background-color: ${(props) =>
-        props.$background ? props.theme.dark100 : "transparent"};
     flex: 1 1 auto;
-    font-size: ${(props) =>
-        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
-    width: ${(props) => (props.$wide ? "100%" : null)};
-    height: ${(props) => (props.$tall ? "100%" : null)};
+    ${commonStyles}
 `;

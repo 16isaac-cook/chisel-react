@@ -36,7 +36,6 @@ const Home: React.FC = () => {
                     Daggerheart.
                 </Label>
                 <Container
-                    column={false}
                     style={{
                         display: "grid",
                         gridTemplateColumns: "1fr 1fr 1fr 1fr",

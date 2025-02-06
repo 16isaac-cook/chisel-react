@@ -1,20 +1,17 @@
 import { forwardRef, ReactNode } from "react";
 
-import { fontSizes } from "src/shared/util/styles";
+import { CommonStylePropsIcon } from "src/shared/util/styles";
 
 import Icon, { IconName } from "../Icon/Icon";
 
 import { StyledLink } from "./Link.styles";
 
-type Props = {
+interface Props extends CommonStylePropsIcon {
     children?: ReactNode;
-    fontSize?: number | keyof typeof fontSizes;
-    icon?: IconName;
-    iconSize?: number;
     disabled?: boolean;
     onClick?: () => void;
     [key: string]: any;
-};
+}
 
 const Link = forwardRef<HTMLButtonElement, Props>(
     (
@@ -44,12 +41,7 @@ const Link = forwardRef<HTMLButtonElement, Props>(
                 ref={ref}
             >
                 {icon && typeof icon === "string" ? (
-                    <Icon
-                        icon={icon}
-                        size={iconSize}
-                        color="inherit"
-                        right={true}
-                    />
+                    <Icon icon={icon} fontSize={iconSize} right />
                 ) : (
                     icon
                 )}

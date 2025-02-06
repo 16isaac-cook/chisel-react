@@ -1,4 +1,4 @@
-import { fontSizes } from "src/shared/util/styles";
+import { CommonStyleProps, fontSizes } from "src/shared/util/styles";
 import { StyledIcon } from "./Icon.styles";
 
 const iconCodes = {
@@ -60,25 +60,23 @@ const iconCodes = {
 
 export type IconName = keyof typeof iconCodes;
 
-interface IconProps {
+interface IconProps extends CommonStyleProps {
     icon?: IconName;
-    right?: boolean;
-    size?: number | keyof typeof fontSizes;
     [key: string]: any;
 }
 
 const Icon: React.FC<IconProps> = ({
     icon = "home",
     right,
-    size = 0,
+    fontSize,
     ...iconProps
 }) => {
     return (
         <StyledIcon
             {...iconProps}
+            right={right}
             className={"ri-" + iconCodes[icon as keyof typeof iconCodes]}
-            $right={right}
-            size={size}
+            fontSize={fontSize}
         />
     );
 };

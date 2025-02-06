@@ -24,7 +24,7 @@ const WorldTile: React.FC<Props> = ({ image, icon, label, onClick }) => {
                 {image ? <TileImage src={image} /> : <Placeholder />}
             </TileImageBox>
             <TileFooter>
-                <Icon icon={icon} right={true} />
+                <Icon icon={icon} right />
                 {label}
             </TileFooter>
         </StyledWorldTile>

@@ -58,7 +58,7 @@ const QuillLoader: React.FC = () => {
 
     return (
         <Page title="Quill" back="/gm-tools">
-            <Container column={false} style={{ width: "100%", height: "100%" }}>
+            <Container column={false} wide={true} tall={true}>
                 {/* left panel, navigation */}
                 <Container
                     style={{
@@ -111,9 +111,9 @@ const QuillLoader: React.FC = () => {
                                 overflowY: "auto",
                                 overflowX: "hidden",
                                 flex: "1 1 0",
-                                width: "100%",
                                 padding: "0.3em",
                             }}
+                            wide={true}
                             justify="flex-start"
                         >
                             {quill.worldId ? (
@@ -122,8 +122,8 @@ const QuillLoader: React.FC = () => {
                                         overflowY: "auto",
                                         overflowX: "hidden",
                                         flex: "1 1 0",
-                                        width: "100%",
                                     }}
+                                    wide={true}
                                     padding={false}
                                     justify="flex-start"
                                 >
@@ -298,7 +298,7 @@ const QuillLoader: React.FC = () => {
 
 export const QuillHome: React.FC = () => {
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Home</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -321,10 +321,10 @@ export const QuillWorlds: React.FC = () => {
     };
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Worlds</SmallTitle>
             <Panel>
-                <Container style={{ width: "100%" }}>
+                <Container wide={true}>
                     <WorldList
                         worlds={quill.worldList.map((world) => {
                             return {
@@ -355,7 +355,7 @@ export const QuillBuilder: React.FC = () => {
     const quill = useQuillContext();
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Overview - {quill.worldInfo.name}</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -375,13 +375,9 @@ export const QuillBuilderWorldObjects: React.FC = () => {
 
     if (loading) {
         return (
-            <Container style={{ width: "100%" }} padding={false}>
+            <Container wide={true} padding={false}>
                 <SmallTitle>World Objects - {quill.worldInfo.name}</SmallTitle>
-                <Container
-                    style={{ width: "100%" }}
-                    column={false}
-                    padding={false}
-                >
+                <Container wide={true} column={false} padding={false}>
                     <Panel
                         title="World Objects"
                         right={true}
@@ -403,9 +399,9 @@ export const QuillBuilderWorldObjects: React.FC = () => {
     }
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>World Objects - {quill.worldInfo.name}</SmallTitle>
-            <Container style={{ width: "100%" }} column={false} padding={false}>
+            <Container wide={true} column={false} padding={false}>
                 <Panel
                     title="World Objects"
                     right={true}
@@ -417,11 +413,11 @@ export const QuillBuilderWorldObjects: React.FC = () => {
                 >
                     <Container
                         style={{
-                            width: "100%",
                             flex: "1 0 0",
                             overflowY: "auto",
                             justifyContent: "flex-start",
                         }}
+                        wide={true}
                     >
                         {quill.worldInfo.name
                             ? Object.entries(builderObjects).map(
@@ -451,8 +447,8 @@ export const QuillBuilderWorldObjects: React.FC = () => {
                             : null}
                     </Container>
                 </Panel>
-                <Panel title="Builder" style={{ height: "100%" }}>
-                    <ObjectPicker />
+                <Panel title="World Object Builder" style={{ height: "100%" }}>
+                    <Outlet />
                 </Panel>
             </Container>
         </Container>
@@ -463,8 +459,7 @@ export const QuillBuilderWorldObjectCreator: React.FC = () => {
     const quill = useQuillContext();
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
-            <SmallTitle>Builder - {quill.worldInfo.name}</SmallTitle>
+        <Container wide={true} padding={false}>
             <Panel>
                 <BuilderBaseComponent />
             </Panel>
@@ -476,7 +471,7 @@ export const QuillBuilderMaps: React.FC = () => {
     const quill = useQuillContext();
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Maps - {quill.worldInfo.name}</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -487,7 +482,7 @@ export const QuillBuilderHistory: React.FC = () => {
     const quill = useQuillContext();
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>History - {quill.worldInfo.name}</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -498,7 +493,7 @@ export const QuillBuilderCampaigns: React.FC = () => {
     const quill = useQuillContext();
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Campaigns - {quill.worldInfo.name}</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -509,7 +504,7 @@ export const QuillBuilderWritingTools: React.FC = () => {
     const quill = useQuillContext();
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Writing Tools - {quill.worldInfo.name}</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -520,7 +515,7 @@ export const QuillBuilderFiles: React.FC = () => {
     const quill = useQuillContext();
 
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Files - {quill.worldInfo.name}</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -529,7 +524,7 @@ export const QuillBuilderFiles: React.FC = () => {
 
 export const QuillSettings: React.FC = () => {
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Settings</SmallTitle>
             <Panel></Panel>
         </Container>
@@ -538,7 +533,7 @@ export const QuillSettings: React.FC = () => {
 
 export const QuillHelp: React.FC = () => {
     return (
-        <Container style={{ width: "100%" }} padding={false}>
+        <Container wide={true} padding={false}>
             <SmallTitle>Help & Info</SmallTitle>
             <Panel></Panel>
         </Container>

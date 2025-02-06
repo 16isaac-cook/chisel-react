@@ -8,6 +8,8 @@ interface Props {
     $align: string;
     $padding: boolean;
     $background: boolean;
+    $wide: boolean;
+    $tall: boolean;
     fontSize: keyof typeof fontSizes | number;
 }
 
@@ -22,4 +24,6 @@ export const StyledContainer = styled.div<Props>`
     flex: 1 1 auto;
     font-size: ${(props) =>
         props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
+    width: ${(props) => (props.$wide ? "100%" : null)};
+    height: ${(props) => (props.$tall ? "100%" : null)};
 `;

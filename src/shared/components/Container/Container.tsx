@@ -10,6 +10,8 @@ interface Props {
     align?: string;
     padding?: boolean;
     background?: boolean;
+    wide?: boolean;
+    tall?: boolean;
     children?: ReactNode;
     style?: CSSProperties;
     fontSize?: keyof typeof fontSizes | number;
@@ -22,6 +24,8 @@ const Container: React.FC<Props> = ({
     align = "center",
     padding = true,
     background = false,
+    wide = false,
+    tall = false,
     children = null,
     style = undefined,
     fontSize = 0,
@@ -34,6 +38,8 @@ const Container: React.FC<Props> = ({
             $align={align}
             $padding={padding}
             $background={background}
+            $wide={wide}
+            $tall={tall}
             fontSize={fontSize}
             style={style}
             {...containerProps}

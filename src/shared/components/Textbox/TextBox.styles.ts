@@ -13,6 +13,7 @@ export const StyledTextBox = styled.textarea<CommonStyleProps>`
     padding: 0.3em;
     ${commonStyles}
     background-color: ${(props) => props.theme.dark300};
+    resize: vertical;
     &:not(:disabled) {
         &:hover {
             background-color: ${(props) => props.theme.dark400};

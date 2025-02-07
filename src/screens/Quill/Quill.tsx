@@ -59,7 +59,7 @@ const QuillLoader: React.FC = () => {
                 {/* left panel, navigation */}
                 <Container column right tall wide="20%">
                     <SmallTitle>Explorer</SmallTitle>
-                    <Panel column={true} flex="0 1 0" padding="0.6em">
+                    <Panel column flex="0 1 0" padding="0.6em">
                         <Button
                             variant="big"
                             icon="home"
@@ -96,8 +96,6 @@ const QuillLoader: React.FC = () => {
                             padding="0.3em"
                             wide
                             justify="flex-start"
-                            overflowy="auto"
-                            overflowx="hidden"
                         >
                             {quill.worldId ? (
                                 <Container

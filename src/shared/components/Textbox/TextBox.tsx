@@ -1,15 +1,13 @@
 import { forwardRef } from "react";
 
-import { fontSizes } from "src/shared/util/styles";
+import { CommonStyleProps } from "src/shared/util/styles";
 
 import { StyledTextBox } from "./TextBox.styles";
 
-interface Props {
+interface Props extends CommonStyleProps {
     value?: string | number;
-    fontSize?: number | keyof typeof fontSizes;
     disabled?: boolean;
     filter?: RegExp;
-    margin?: boolean;
     onChange?: () => {};
     [key: string]: any;
 }
@@ -18,8 +16,8 @@ const TextBox = forwardRef<HTMLTextAreaElement, Props>(
     (
         {
             value,
-            fontSize = 0,
-            disabled = false,
+            fontSize,
+            disabled,
             filter,
             margin = true,
             onChange = () => {},
@@ -34,7 +32,7 @@ const TextBox = forwardRef<HTMLTextAreaElement, Props>(
                 fontSize={fontSize}
                 disabled={disabled}
                 onChange={onChange}
-                $margin={margin}
+                margin={margin}
                 ref={ref}
             />
         );

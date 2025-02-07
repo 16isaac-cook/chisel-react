@@ -1,6 +1,6 @@
 import { forwardRef, useState } from "react";
 
-import { fontSizes } from "src/shared/util/styles";
+import { CommonStyleProps } from "src/shared/util/styles";
 
 import {
     StyledSwitch,
@@ -10,23 +10,15 @@ import {
     SwitchContainer,
 } from "./Switch.styles";
 
-interface Props {
+interface Props extends CommonStyleProps {
     defaultChecked?: boolean;
-    margin?: boolean;
     label?: string;
-    fontSize?: number | keyof typeof fontSizes;
     onChecked?: (checked: boolean) => void;
 }
 
 const Switch = forwardRef<HTMLInputElement, Props>(
     (
-        {
-            defaultChecked = false,
-            margin = true,
-            label,
-            fontSize = 0,
-            onChecked,
-        },
+        { defaultChecked = false, margin = true, label, fontSize, onChecked },
         ref
     ) => {
         const [checked, setChecked] = useState(defaultChecked);
@@ -44,7 +36,7 @@ const Switch = forwardRef<HTMLInputElement, Props>(
                 {label && (
                     <SwitchLabel fontSize={fontSize}>{label}</SwitchLabel>
                 )}
-                <StyledSwitch $margin={margin}>
+                <StyledSwitch margin={margin}>
                     <SwitchInput
                         type="checkbox"
                         ref={ref}

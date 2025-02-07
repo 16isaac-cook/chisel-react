@@ -10,7 +10,7 @@ import {
 
 import Icon, { IconName } from "../Icon/Icon";
 
-import { fontDisplayNames, fontSizes } from "src/shared/util/styles";
+import { fontDisplayNames, CommonStyleProps } from "src/shared/util/styles";
 
 /*
 Farmat like this:
@@ -31,15 +31,13 @@ type OptionProps = {
     icon?: IconName;
 };
 
-type Props = {
+interface Props extends CommonStyleProps {
     options: OptionProps[];
     placeholder?: string;
-    margin?: boolean;
-    fontSize?: number | keyof typeof fontSizes;
     onChange?: (value: string | number) => void;
     value?: string | number;
     error?: string;
-};
+}
 
 const Select = forwardRef<HTMLDivElement, Props>(
     (
@@ -47,7 +45,7 @@ const Select = forwardRef<HTMLDivElement, Props>(
             options,
             placeholder = "Select an option.",
             margin = true,
-            fontSize = 0,
+            fontSize,
             onChange = () => {},
             value,
             error,
@@ -115,7 +113,7 @@ const Select = forwardRef<HTMLDivElement, Props>(
                     selectRef.current = node;
                     if (typeof ref === "function") ref(node);
                 }}
-                $margin={margin}
+                margin={margin}
                 fontSize={fontSize}
             >
                 <SelectedValue

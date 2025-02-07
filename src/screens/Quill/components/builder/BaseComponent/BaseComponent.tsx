@@ -74,7 +74,7 @@ const BuilderBaseComponent: React.FC = () => {
             <Container wide column>
                 <Container fontSize="huge" wide>
                     <Input
-                        style={{ flex: "1 1 auto" }}
+                        flex="1 1 auto"
                         {...register("name", {
                             required: "A name is required.",
                         })}

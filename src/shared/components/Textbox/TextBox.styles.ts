@@ -1,20 +1,18 @@
 import styled from "styled-components";
 
-import { font, fontSizes } from "src/shared/util/styles";
+import {
+    font,
+    fontSizes,
+    commonStyles,
+    CommonStyleProps,
+} from "src/shared/util/styles";
 
-interface Props {
-    fontSize: number | keyof typeof fontSizes;
-    $margin?: boolean;
-}
-
-export const StyledTextBox = styled.textarea<Props>`
-    background-color: ${(props) => props.theme.dark300};
+export const StyledTextBox = styled.textarea<CommonStyleProps>`
     border: none;
     border-radius: 5px;
     padding: 0.3em;
-    margin: ${(props) => (props.$margin ? `3px` : `0`)};
-    font-size: ${(props) =>
-        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
+    ${commonStyles}
+    background-color: ${(props) => props.theme.dark300};
     &:not(:disabled) {
         &:hover {
             background-color: ${(props) => props.theme.dark400};
@@ -23,9 +21,5 @@ export const StyledTextBox = styled.textarea<Props>`
             outline: none;
             background-color: ${(props) => props.theme.dark400};
         }
-    }
-    &:disabled {
-        opacity: 0.6;
-        cursor: default;
     }
 `;

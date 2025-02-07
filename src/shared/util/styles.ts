@@ -38,6 +38,7 @@ type ColorScheme = {
     dark500: string;
     dark600: string;
     font: string;
+    error: string;
 };
 
 type Theme = {
@@ -59,6 +60,7 @@ const colors = {
     dark400: "#5f5a63",
     dark500: "#78737b",
     dark600: "#918d94",
+    error: "red",
 };
 
 export const themes: Theme = {
@@ -76,6 +78,7 @@ export const themes: Theme = {
         dark500: colors.dark500,
         dark600: colors.dark600,
         font: "#fff",
+        error: colors.error,
     },
     //gonna be honest, these values are just guess and check until I thought it looked nice
     light: {
@@ -92,6 +95,7 @@ export const themes: Theme = {
         dark500: modify.lighten(colors.dark500, 2.2),
         dark600: modify.lighten(colors.dark600, 2.2),
         font: "#000",
+        error: colors.error,
     },
 };
 
@@ -315,8 +319,8 @@ export interface CommonStyleProps {
     background?: boolean | keyof typeof colors;
     wide?: boolean | string | number;
     tall?: boolean | string | number;
-    overflowY?: "visible" | "hidden" | "clip" | "scroll" | "auto";
-    overflowX?: "visible" | "hidden" | "clip" | "scroll" | "auto";
+    overflowy?: "visible" | "hidden" | "clip" | "scroll" | "auto";
+    overflowx?: "visible" | "hidden" | "clip" | "scroll" | "auto";
 }
 
 export interface CommonStylePropsIcon extends CommonStyleProps {
@@ -353,8 +357,8 @@ export const commonStyles = css<CommonStyleProps>`
     }};
     width: ${(props) => (props.wide ? getWideTall(props.wide) : null)};
     height: ${(props) => (props.tall ? getWideTall(props.tall) : null)};
-    overflow-y: ${(props) => (props.overflowY ? props.overflowY : null)};
-    overflow-x: ${(props) => (props.overflowX ? props.overflowX : null)};
+    overflow-y: ${(props) => (props.overflowy ? props.overflowy : null)};
+    overflow-x: ${(props) => (props.overflowx ? props.overflowx : null)};
     &:disabled {
         opacity: 0.6;
         cursor: default;

@@ -1,17 +1,14 @@
 import styled from "styled-components";
 
-import { clickable, font, fontSizes } from "src/shared/util/styles";
+import {
+    clickable,
+    commonStyles,
+    CommonStyleProps,
+} from "src/shared/util/styles";
 
-interface Props {
-    fontSize: number | keyof typeof fontSizes;
-    $margin?: boolean;
-}
-
-export const SelectContainer = styled.div<Props>`
+export const SelectContainer = styled.div<CommonStyleProps>`
     position: relative;
-    margin: ${(props) => (props.$margin ? `3px` : `0`)};
-    font-size: ${(props) =>
-        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
+    ${commonStyles}
 `;
 
 export const SelectedValue = styled.div`

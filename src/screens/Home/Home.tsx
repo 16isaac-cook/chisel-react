@@ -12,7 +12,10 @@ const Home: React.FC = () => {
 
     return (
         <Page title="Home">
-            <Panel style={{ maxWidth: "80%", backgroundColor: "transparent" }}>
+            <Panel
+                column
+                style={{ maxWidth: "80%", backgroundColor: "transparent" }}
+            >
                 <div
                     style={{
                         width: "800px",

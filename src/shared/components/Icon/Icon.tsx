@@ -1,4 +1,4 @@
-import { CommonStyleProps, fontSizes } from "src/shared/util/styles";
+import { CommonStyleProps } from "src/shared/util/styles";
 import { StyledIcon } from "./Icon.styles";
 
 const iconCodes = {

@@ -3,7 +3,7 @@ import React, { ReactNode, CSSProperties } from "react";
 import { CommonStylePropsIcon } from "src/shared/util/styles";
 
 import { StyledLabel } from "./Label.styles";
-import Icon, { IconName } from "../Icon/Icon";
+import Icon from "../Icon/Icon";
 
 interface Props extends CommonStylePropsIcon {
     children: ReactNode;
@@ -14,9 +14,9 @@ interface Props extends CommonStylePropsIcon {
 
 const Label: React.FC<Props> = ({
     children,
-    fontSize = 0,
+    fontSize,
     color,
-    icon = undefined,
+    icon,
     center = false,
     style = undefined,
     ...labelProps

@@ -98,8 +98,8 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
             }}
         >
             {creating ? (
-                <Panel style={{ flex: "0 1 0", whiteSpace: "nowrap" }}>
-                    <Label fontSize={"huge"} style={{ padding: "0.3em" }}>
+                <Panel column flex="0 1 0" style={{ whiteSpace: "nowrap" }}>
+                    <Label fontSize="huge" padding>
                         Creating world...
                     </Label>
                 </Panel>
@@ -108,7 +108,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                     onSubmit={handleSubmit(onSubmit)}
                     onMouseDown={(e) => e.stopPropagation()}
                 >
-                    <Label fontSize={"huge"} style={{ marginBottom: "0.3em" }}>
+                    <Label fontSize="huge" bottom>
                         Create New World
                     </Label>
 
@@ -119,7 +119,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                         })}
                     />
                     {errors.name && (
-                        <Label fontSize={"big"} style={{ color: "red" }}>
+                        <Label fontSize="big" color="error">
                             {errors.name.message}
                         </Label>
                     )}
@@ -144,7 +144,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                         )}
                     />
                     {errors.theme && (
-                        <Label fontSize={"big"} style={{ color: "red" }}>
+                        <Label fontSize="big" color="error">
                             {errors.theme.message}
                         </Label>
                     )}
@@ -152,11 +152,7 @@ const CreateWorldPopup: React.FC<Props> = ({ close, reload }) => {
                     <Label>Author Name (Optional):</Label>
                     <Input {...register("author")}></Input>
 
-                    <Button
-                        margin={["0.3em", 0, 0, 0]}
-                        variant="primary"
-                        submit={true}
-                    >
+                    <Button top variant="primary" submit>
                         Create World
                     </Button>
                 </StyledPopup>

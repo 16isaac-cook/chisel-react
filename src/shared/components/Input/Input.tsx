@@ -1,25 +1,23 @@
 import { forwardRef } from "react";
 
-import { fontSizes } from "src/shared/util/styles";
+import { fontSizes, CommonStyleProps } from "src/shared/util/styles";
 
 import { StyledInput } from "./Input.styles";
 
-type Props = {
+interface Props extends CommonStyleProps {
     value?: string | number;
-    fontSize?: number | keyof typeof fontSizes;
     disabled?: boolean;
     filter?: RegExp;
-    margin?: boolean;
     onChange?: () => {};
     [key: string]: any;
-};
+}
 
 const Input = forwardRef<HTMLInputElement, Props>(
     (
         {
             value,
-            fontSize = 0,
-            disabled = false,
+            fontSize,
+            disabled,
             filter,
             margin = true,
             onChange = () => {},
@@ -34,7 +32,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
                 fontSize={fontSize}
                 disabled={disabled}
                 onChange={onChange}
-                $margin={margin}
+                margin={margin}
                 ref={ref}
             />
         );

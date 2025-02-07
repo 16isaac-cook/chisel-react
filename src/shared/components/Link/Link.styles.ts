@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
-import { clickable, font, fontSizes } from "../../util/styles";
+import { clickable, commonStyles, CommonStyleProps } from "../../util/styles";
 
-interface Props {
-    fontSize: number | keyof typeof fontSizes;
-}
-
-export const StyledLink = styled.button<Props>`
+export const StyledLink = styled.button<CommonStyleProps>`
     display: flex;
     flex: 0 1 0;
     flex-direction: row;
@@ -14,11 +10,6 @@ export const StyledLink = styled.button<Props>`
     align-items: center;
     border: 0;
     padding: 0;
+    ${commonStyles}
     ${clickable.link};
-    font-size: ${(props) =>
-        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
-    &:disabled {
-        opacity: 0.6;
-        cursor: default;
-    }
 `;

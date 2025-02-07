@@ -1,21 +1,13 @@
 import styled from "styled-components";
 
-import { clickable, font, fontSizes } from "../../util/styles";
+import { clickable, commonStyles, CommonStyleProps } from "../../util/styles";
 
-type Props = {
-    $margin?: boolean;
-};
-
-type LabelProps = {
-    fontSize: number | keyof typeof fontSizes;
-};
-
-export const StyledSwitch = styled.label<Props>`
+export const StyledSwitch = styled.label<CommonStyleProps>`
     position: relative;
     display: inline-block;
     width: 2em;
     height: 1em;
-    margin: ${(props) => (props.$margin ? `3px` : `0`)};
+    ${commonStyles}
 `;
 
 export const SwitchContainer = styled.div`
@@ -23,10 +15,9 @@ export const SwitchContainer = styled.div`
     flex-direction: row;
 `;
 
-export const SwitchLabel = styled.div<LabelProps>`
-    font-size: ${(props) =>
-        props.fontSize === 0 ? "inherit" : font.size(props.fontSize)};
+export const SwitchLabel = styled.div<CommonStyleProps>`
     margin-right: 0.3em;
+    ${commonStyles}
 `;
 
 export const SwitchInput = styled.input`

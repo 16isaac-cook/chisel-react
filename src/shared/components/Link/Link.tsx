@@ -2,7 +2,7 @@ import { forwardRef, ReactNode } from "react";
 
 import { CommonStylePropsIcon } from "src/shared/util/styles";
 
-import Icon, { IconName } from "../Icon/Icon";
+import Icon from "../Icon/Icon";
 
 import { StyledLink } from "./Link.styles";
 

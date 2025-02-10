@@ -21,10 +21,10 @@ This is being made as a passion project with no current plans to monetize the co
 
 ## How To Use
 
-After cloning the repo you'll need to run `npm install` to get the required packages, then run `npm start` to launch the program using electron.
+After cloning the repo you'll need to run `npm install` to get the required packages, then run `npm run tauri dev` to launch the program using Tauri.
 
 ## Credits
 
--   The `color`, `styled-components`, and `remixicon` packages
+-   The `color`, `styled-components`, `react-router`, `react-hook-form`, and `remixicon` packages
 -   [remixicon.com](https://remixicon.com/) for various icons used in the project
--   The [Roboto Condensed](https://fonts.google.com/specimen/Roboto+Condensed), [Saira](https://fonts.google.com/specimen/Saira), [Titillium Web](https://fonts.google.com/specimen/Titillium+Web), [Urbanist](https://fonts.google.com/specimen/Urbanist), and [Yantramanav](https://fonts.google.com/specimen/Yantramanav) fonts
+-   The [Afacad Flux](https://fonts.google.com/specimen/Afacad+Flux), [Chakra Petch](https://fonts.google.com/specimen/Chakra+Petch), [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans), [Roboto Condensed](https://fonts.google.com/specimen/Roboto+Condensed), [Saira](https://fonts.google.com/specimen/Saira), [Titillium Web](https://fonts.google.com/specimen/Titillium+Web), [Urbanist](https://fonts.google.com/specimen/Urbanist), and [Yantramanav](https://fonts.google.com/specimen/Yantramanav) fonts

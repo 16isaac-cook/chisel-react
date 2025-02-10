@@ -6,7 +6,7 @@ import { FontName } from "../shared/util/styles";
 export default createGlobalStyle<{ font: FontName }>`
     * {
         box-sizing: border-box;
-        color: ${(props) => props.theme.font};
+        color: ${(props) => props.theme.text};
         margin: 0;
         padding: 0;
         font-size: inherit;
@@ -42,20 +42,31 @@ export default createGlobalStyle<{ font: FontName }>`
     }
 
     ::-webkit-scrollbar {
-        width: 5px;
+        width: 10px;
         z-index: 20;
     }
     ::-webkit-scrollbar-track {
-        border-radius: 2.5px;
+        background: transparent;
     }
     ::-webkit-scrollbar-thumb {
         background: ${(props) => props.theme.dark400};
-        border-radius: 2.5px;
+        border-radius: 4px;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        background-clip: padding-box;
     }
     ::-webkit-scrollbar-thumb:hover {
         background: ${(props) => props.theme.dark500};
+        border-radius: 4px;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        background-clip: padding-box;
     } 
     ::-webkit-scrollbar-thumb:active {
         background: ${(props) => props.theme.dark400};
+        border-radius: 4px;
+        border-left: 2px solid transparent;
+        border-right: 2px solid transparent;
+        background-clip: padding-box;
     }
 `;

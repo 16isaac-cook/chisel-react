@@ -32,7 +32,12 @@ const TitleBar: React.FC<Props> = ({ title, home, back }) => {
 			) : null}
 			<TitleBarTitle>{title}</TitleBarTitle>
 			<TitleBarSettingsButton>
-				<Link onClick={() => setPanelOpen(true)}>
+				<Link
+					onClick={() => setPanelOpen(true)}
+					style={{
+						color: "white",
+					}}
+				>
 					<Icon icon="settings" />
 				</Link>
 			</TitleBarSettingsButton>
